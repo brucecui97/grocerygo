@@ -5,13 +5,15 @@ public class Produce {
     private int calories;
     private int weight;
 
-    public int getPrice(){
+    public int getPrice() {
         return price;
     }
-    public int getcalories(){
+
+    public int getcalories() {
         return calories;
     }
-    public int getweight(){
+
+    public int getweight() {
         return weight;
     }
 
@@ -26,8 +28,9 @@ public class Produce {
     public void setWeight(int weight) {
         this.weight = weight;
     }
-    public void promote(){
-        for (int i=0; i<10;i++){
+
+    public void promote() {
+        for (int i = 0; i < 10; i++) {
             System.out.println("Produce is good for you!");
         }
 

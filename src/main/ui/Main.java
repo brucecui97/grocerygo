@@ -1,7 +1,8 @@
 package ui;
 
-import java.util.Scanner;
 import model.Produce;
+
+import java.util.Scanner;
 
 public class Main {
 
@@ -15,14 +16,13 @@ public class Main {
         Scanner input = new Scanner(System.in);
         System.out.println("how much would you want lettuce to cost?");
         int number = input.nextInt();
-        System.out.println("you really think lettuce should cost " + number+"$?");
+        System.out.println("you really think lettuce should cost " + number + "$?");
         lettuce.setPrice(number);
 
-        if (lettuce.getPrice()>3){
+        if (lettuce.getPrice() > 3) {
             System.out.println("Too expensive");
 
-        }
-        else{
+        } else {
             System.out.println("Great deal");
         }
 
