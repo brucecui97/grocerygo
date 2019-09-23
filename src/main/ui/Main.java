@@ -1,17 +1,19 @@
 package ui;
 
-import model.Produce;
+import model.Food;
 
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        Produce lettuce = new Produce();
-        lettuce.promote();
+        Food lettuce = new Food();
         lettuce.setPrice(2);
         lettuce.setCalories(300);
-        lettuce.setWeight(3);
+        int weight = 3;
+        lettuce.setWeight(weight);
+        int weightGotten = lettuce.getWeight();
+        System.out.println("weightGotten is " + weightGotten);
 
         Scanner input = new Scanner(System.in);
         System.out.println("how much would you want lettuce to cost?");

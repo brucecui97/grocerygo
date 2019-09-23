@@ -1,19 +1,28 @@
 package model;
 
-public class Produce {
+public class Food {
     private int price;
     private int calories;
     private int weight;
+    private String name;
+
+    public Food() {
+
+    }
+
+    public Food(String name) {
+        this.name = name;
+    }
 
     public int getPrice() {
         return price;
     }
 
-    public int getcalories() {
+    public int getCalories() {
         return calories;
     }
 
-    public int getweight() {
+    public int getWeight() {
         return weight;
     }
 
@@ -29,10 +38,4 @@ public class Produce {
         this.weight = weight;
     }
 
-    public void promote() {
-        for (int i = 0; i < 10; i++) {
-            System.out.println("Produce is good for you!");
-        }
-
-    }
 }
