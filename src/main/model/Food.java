@@ -10,8 +10,16 @@ public class Food {
 
     }
 
-    public Food(String name) {
+    public Food(String name, int price, int calories, int weight) {
         this.name = name;
+        this.calories = calories;
+        this.weight = weight;
+        this.price = price;
+    }
+
+
+    public String getName() {
+        return name;
     }
 
     public int getPrice() {
@@ -36,6 +44,15 @@ public class Food {
 
     public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void sayInfo() {
+        System.out.println("weight is " + getWeight() + " calorie is " + getCalories() + " price is " + getPrice());
+
     }
 
 }

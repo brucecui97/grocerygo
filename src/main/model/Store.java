@@ -2,14 +2,21 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Store {
     private List<Food> foods;
     private int openTime;
     private int openHours;
+    private String name;
 
     public Store() {
         foods = new ArrayList<>();
+    }
+
+    public Store(String storename) {
+        foods = new ArrayList<>();
+        name = storename;
     }
 
     public void setFoods(List<Food> foods) {
@@ -45,8 +52,7 @@ public class Store {
 
     //Modfiies this
     //Effect: remove specified food to the foods available in the store
-    public void remove(Food food) {
-        foods.remove(food);
+    public void remove(String foodName) {
     }
 
     //Effect: determine if foods has food called foodName
@@ -59,8 +65,17 @@ public class Store {
         return 0;
     }
 
-    //Produce list of food ranked high to low in calorie/$
+    //Produce list of food ranked high to low in calorie/$!!!
     public List<Food> sortDollarPerCalorie() {
+        List<Food> result = new ArrayList<>();
+
+        Food dummy = new Food();
+        result.add(dummy);
+        return result;
+    }
+
+    //Produce list of food ranked high to low in price!!!
+    public List<Food> sortPrice() {
         List<Food> result = new ArrayList<>();
         ;
         Food dummy = new Food();
@@ -68,13 +83,28 @@ public class Store {
         return result;
     }
 
-    //Produce list of food ranked high to low in price
-    public List<Food> sortPrice() {
-        List<Food> result = new ArrayList<>();
-        ;
-        Food dummy = new Food();
-        result.add(dummy);
-        return result;
+    public void run() {
+        Food lettuce = new Food("lettuce",2,5 ,3);
+        lettuce.setPrice(2);
+        lettuce.setCalories(300);
+        int weight = 3;
+        lettuce.setWeight(weight);
+        int weightGotten = lettuce.getWeight();
+        System.out.println("weightGotten is " + weightGotten);
+
+        Scanner input = new Scanner(System.in);
+        System.out.println("how much would you want lettuce to cost?");
+        int number = input.nextInt();
+        System.out.println("you really think lettuce should cost " + number + "$?");
+        lettuce.setPrice(number);
+
+        if (lettuce.getPrice() > 3) {
+            System.out.println("Too expensive");
+
+        } else {
+            System.out.println("Great deal");
+        }
+
     }
 
 
