@@ -55,4 +55,15 @@ public class Food {
 
     }
 
+    //determines whether this is equal to other
+    public boolean equals(Food other) {
+        if (name == other.getName()
+                && price == other.getPrice()
+                && calories == other.getCalories()
+                && weight == other.getWeight()) {
+            return true;
+        }
+        return false;
+    }
+
 }

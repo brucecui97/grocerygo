@@ -29,10 +29,19 @@ public class TestFood {
         assertEquals(rawCarrot.getWeight(),myfood.getWeight());
         assertEquals(rawCarrot.getCalories(),myfood.getCalories());
         assertEquals(rawCarrot.getName(),myfood.getName());
-
-
     }
 
+    @Test
+    public void testEqualsShouldBeTrue(){
+        Food carrot = new Food("carrot",5,2,1000);
+        assertTrue(myfood.equals(carrot));
+    }
+
+    @Test
+    public void testEqualsShouldBeFalse(){
+        Food carrot = new Food("carrot",6,2,1000);
+        assertFalse(myfood.equals(carrot));
+    }
 
 
 
