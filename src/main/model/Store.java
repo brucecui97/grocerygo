@@ -83,26 +83,27 @@ public class Store {
         return result;
     }
 
+    public void printListofFood(List<Food> foods) {
+        for (int i = 0; i < foods.size(); i++) {
+            foods.get(i).print();
+        }
+    }
+
     public void run() {
-        Food lettuce = new Food("lettuce",2,5 ,3);
-        lettuce.setPrice(2);
-        lettuce.setCalories(300);
-        int weight = 3;
-        lettuce.setWeight(weight);
-        int weightGotten = lettuce.getWeight();
-        System.out.println("weightGotten is " + weightGotten);
-
+        Food lettuce = new Food("lettuce", 2, 5, 3);
+        Food carrot = new Food("carrot", 3, 10, 5);
+        foods.add(lettuce);
+        foods.add(carrot);
         Scanner input = new Scanner(System.in);
-        System.out.println("how much would you want lettuce to cost?");
+        System.out.println("Enter a number below: would you like to sort by 1.$/calorie or 2.Price?");
         int number = input.nextInt();
-        System.out.println("you really think lettuce should cost " + number + "$?");
-        lettuce.setPrice(number);
+        System.out.println("you entered " + number);
 
-        if (lettuce.getPrice() > 3) {
-            System.out.println("Too expensive");
 
-        } else {
-            System.out.println("Great deal");
+        if (number == 2) {
+            printListofFood(sortPrice());
+        } else if (number == 1) {
+            printListofFood(sortDollarPerCalorie());
         }
 
     }
