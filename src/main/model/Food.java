@@ -7,7 +7,6 @@ public class Food {
     private String name;
 
     public Food() {
-
     }
 
     public Food(String name, int price, int calories, int weight) {
@@ -50,8 +49,9 @@ public class Food {
         this.name = name;
     }
 
-    public void sayInfo() {
-        System.out.println("weight is " + getWeight() + " calorie is " + getCalories() + " price is " + getPrice());
+    public void print() {
+        System.out.println("name is " + getName() + " weight is " + getWeight()
+                + " calorie is " + getCalories() + " price is " + getPrice());
 
     }
 
