@@ -6,6 +6,7 @@ import model.Store;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -107,25 +108,24 @@ public class TestStore {
     public void testPriceEmpty() {
         assertTrue(mystore.sortPrice().isEmpty());
     }
-    @Test
+    @Test //!!!
     public void testSortPriceNonEmpty() {
-//        Food lettuce = new Food("lettuce", 2, 5, 3);
-//        Food carrot = new Food("carrot", 3, 10, 5);
-//        Food apple = new Food("apple", 7, 20,10);
-//        mystore.insert(lettuce);
-//        mystore.insert(apple);
-//        mystore.insert(carrot);
-//        mystore.sortPrice();
-//        List<Food> temp = new ArrayList<Food>();
-//        temp.insert(lettuce);
-//        temp.insert(carrot);
-//        temp.insert(apple);
-//        temp.get(1);
-//
-//
-//        for (int i = 0; i<mystore.getFoods().size();i++){
-//            assertTrue(mystore.getFoods().get(i).equals(temp.get(i)));
-//        }
+        Food lettuce = new Food("lettuce", 2, 5, 3);
+        Food carrot = new Food("carrot", 3, 10, 5);
+        Food apple = new Food("apple", 7, 20,10);
+        mystore.insert(lettuce);
+        mystore.insert(apple);
+        mystore.insert(carrot);
+        mystore.sortPrice();
+        List<Food> temp = new ArrayList<Food>();
+        temp.add(lettuce);
+        temp.add(carrot);
+        temp.add(apple);
+
+
+        for (int i = 0; i<mystore.getFoods().size();i++){
+            assertTrue(mystore.getFoods().get(i).equals(temp.get(i)));
+        }
     }
 //    @Test
 //    public void testSortDollarPerCalorieEmpty() {

@@ -43,6 +43,12 @@ public class TestFood {
         assertFalse(myfood.equals(carrot));
     }
 
+    @Test
+    public void testEqualsShouldBeFalseWithUnitialized(){
+        Food carrot = new Food();
+        assertFalse(myfood.equals(carrot));
+    }
+
 
 
 

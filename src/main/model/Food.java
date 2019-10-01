@@ -1,6 +1,8 @@
 package model;
 
-public class Food {
+import java.io.Serializable;
+
+public class Food implements Serializable {
     private int price;
     private int calories;
     private int weight;
@@ -9,6 +11,8 @@ public class Food {
     public Food() {
     }
 
+    //modifies this
+    // effect: populate this with info
     public Food(String name, int price, int calories, int weight) {
         this.name = name;
         this.calories = calories;
@@ -49,13 +53,14 @@ public class Food {
         this.name = name;
     }
 
+    //effect: print info related to this food item
     public void print() {
         System.out.println("name is " + getName() + " weight is " + getWeight()
                 + " calorie is " + getCalories() + " price is " + getPrice());
 
     }
 
-    //determines whether this is equal to other
+    //effect: determines whether two foods are equal
     public boolean equals(Food other) {
         if (name == other.getName()
                 && price == other.getPrice()
