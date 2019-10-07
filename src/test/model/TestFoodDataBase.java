@@ -36,7 +36,6 @@ class TestFoodDataBase {
         assertEquals("apple", myFoodDataBase.getFoods().get(1).getName());
     }
 
-
     @Test
     void testInsert() {
         myFoodDataBase.insert(carrot);

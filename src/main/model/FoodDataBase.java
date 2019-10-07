@@ -10,7 +10,7 @@ import java.io.*;
 
 //loading and saving to/from file was done following this post
 //https://stackoverflow.com/questions/16111496/java-how-can-i-write-my-arraylist-to-a-file-and-read-load-that-file-to-the
-public class FoodDataBase implements Loadable, Savable {
+public class FoodDataBase implements DataBase {
     private List<Food> foods;
 
     FoodDataBase() {

@@ -1,8 +1,8 @@
 package model;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public interface Loadable {
+public interface DataBase  {
     void load() throws IOException, ClassNotFoundException;
+    void save() throws IOException;
 }
