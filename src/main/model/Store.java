@@ -19,6 +19,18 @@ public class Store {
         name = storename;
     }
 
+    public void loadFoodDataBase() throws IOException, ClassNotFoundException {
+        FoodDataBase temp = new FoodDataBase();
+        temp.load("./data/foodData.txt");
+        foods = temp.getFoods();
+    }
+
+    public void loadNonFoodDataBase() throws IOException, ClassNotFoundException {
+        NonFoodDataBase temp = new NonFoodDataBase();
+        temp.load("./data/nonFoodData.txt");
+        nonFoods = temp.getNonFoods();
+    }
+
     public void setNonFoods(List<NonFood> nonFoods) {
         this.nonFoods = nonFoods;
     }
@@ -98,30 +110,14 @@ public class Store {
             foods.get(i).printInfo();
         }
     }
-
-    // modifies: this
-    // effect: adds some food to the foods list and asks user how they want to sort the list
-    public void run() throws IOException, ClassNotFoundException {
-        FoodDataBase myFoodDataBase = new FoodDataBase();
-
-
-        Food pineapple = new Food("pineapple", 2, 3, 5);
-        Food pear = new Food("pear", 10, 5, 8);
-        Food apple = new Food("apple", 10, 5, 8);
-        myFoodDataBase.insert(pineapple);
-        myFoodDataBase.insert(pear);
-        myFoodDataBase.insert(apple);
-
-        myFoodDataBase.save();
-
-        FoodDataBase temp = new FoodDataBase();
-        System.out.println("initially foods is empty, but we load from dataBase");
-        temp.load();
-        System.out.println(temp.getFoods().get(0).getName());
-        System.out.println(temp.getFoods().get(1).getName());
-        System.out.println(temp.getFoods().get(2).getName());
-
+    //effect: print the info of each food in foods
+    public void printListofNonFood(List<NonFood> nonFoods) {
+        for (int i = 0; i < nonFoods.size(); i++) {
+            nonFoods.get(i).printInfo();
+        }
     }
+
+
 
 
 }

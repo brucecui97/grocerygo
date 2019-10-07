@@ -28,9 +28,9 @@ class TestFoodDataBase {
     void testLoadAndSave() throws IOException, ClassNotFoundException {
         myFoodDataBase.insert(carrot);
         myFoodDataBase.insert(apple);
-        myFoodDataBase.save();
+        myFoodDataBase.save("./data/foodData.txt");
         FoodDataBase testFoodDataBase = new FoodDataBase();
-        testFoodDataBase.load();
+        testFoodDataBase.load("./data/foodData.txt");
         assertEquals("carrot", myFoodDataBase.getFoods().get(0).getName());
         assertEquals(carrot.getPrice(), myFoodDataBase.getFoods().get(0).getPrice());
         assertEquals("apple", myFoodDataBase.getFoods().get(1).getName());
