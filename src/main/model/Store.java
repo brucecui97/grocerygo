@@ -6,8 +6,6 @@ import java.util.*;
 
 public class Store {
     private List<Food> foods;
-    private int openTime;
-    private int openHours;
     private String name;
 
     public Store() {
@@ -24,26 +22,14 @@ public class Store {
         this.foods = foods;
     }
 
-    public void setOpenHours(int openHours) {
-        this.openHours = openHours;
-    }
-
-    public void setOpenTime(int openTime) {
-        this.openTime = openTime;
-    }
-
-    public int getOpenHours() {
-        return openHours;
-    }
-
-    public int getOpenTime() {
-        return openTime;
-    }
 
     public List<Food> getFoods() {
         return foods;
     }
 
+    public String getName() {
+        return name;
+    }
 
     //Modfiies this
     //Effect: add specified food to the foods available in the store
@@ -79,15 +65,15 @@ public class Store {
         return foods.size();
     }
 
-    //modifies this
-    //Produce list of food ranked high to low in calorie/$ and updates order of foods list
-    public List<Food> sortDollarPerCalorie() {
-        List<Food> result = new ArrayList<>();
-
-        Food dummy = new Food();
-        result.add(dummy);
-        return result;
-    }
+//    //modifies this
+//    //Produce list of food ranked high to low in calorie/$ and updates order of foods list
+//    public List<Food> sortDollarPerCalorie() {
+//        List<Food> result = new ArrayList<>();
+//
+//        Food dummy = new Food();
+//        result.add(dummy);
+//        return result;
+//    }
 
     //modifies this
     //Produce list of food ranked high to low in price and updates order of foods list
@@ -110,9 +96,9 @@ public class Store {
         FoodDataBase myFoodDataBase = new FoodDataBase();
 
 
-        Food pineapple = new Food("pineapple",2,3,5);
-        Food pear = new Food("pear",10,5,8);
-        Food apple = new Food("apple",10,5,8);
+        Food pineapple = new Food("pineapple", 2, 3, 5);
+        Food pear = new Food("pear", 10, 5, 8);
+        Food apple = new Food("apple", 10, 5, 8);
         myFoodDataBase.insert(pineapple);
         myFoodDataBase.insert(pear);
         myFoodDataBase.insert(apple);
@@ -125,7 +111,6 @@ public class Store {
         System.out.println(temp.getFoods().get(0).getName());
         System.out.println(temp.getFoods().get(1).getName());
         System.out.println(temp.getFoods().get(2).getName());
-
 
     }
 

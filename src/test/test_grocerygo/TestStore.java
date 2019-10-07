@@ -29,7 +29,12 @@ public class TestStore {
     }
 
     //!!! test constructor
+    @Test
+    public void testStore(){
 
+        Store tempStore = new Store("bruce store");
+        assertEquals("bruce store",tempStore.getName());
+    }
     @Test
     public void testInsertEmpty() {
         assertEquals(0, mystore.total_food());
