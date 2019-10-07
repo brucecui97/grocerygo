@@ -12,7 +12,9 @@ public class Main {
         Store bruceStore = new Store();
         bruceStore.loadFoodDataBase();
         bruceStore.loadNonFoodDataBase();
+        System.out.println("here's whats in bruce's stores food database");
         bruceStore.printListofFood(bruceStore.getFoods());
+        System.out.println("here's whats in bruce's stores non database");
         bruceStore.printListofNonFood(bruceStore.getNonFoods());
         Scanner input = new Scanner(System.in);
 
