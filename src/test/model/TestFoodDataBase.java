@@ -15,39 +15,32 @@ class TestFoodDataBase {
     Food carrot;
     Food apple;
     FoodDataBase myFoodDataBase = new FoodDataBase();
+
     @BeforeEach
     public void runBefore() {
-        carrot = new Food("carrot",2,3,5);
-        apple = new Food("apple",10,5,8);
+        carrot = new Food("carrot", 2, 3, 5);
+        apple = new Food("apple", 10, 5, 8);
+
+    }
+
+
+    @Test
+    void testLoadAndSave() throws IOException, ClassNotFoundException {
         myFoodDataBase.insert(carrot);
         myFoodDataBase.insert(apple);
-    }
-
-    @Test
-    void testSave() throws IOException, ClassNotFoundException {
-
         myFoodDataBase.save();
-        FoodDataBase myDataBase2 = new FoodDataBase();
-
-        FileInputStream fis = new FileInputStream("./data/myloFood.txt");
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        List<Food> myFoods = (List<Food>) ois.readObject();
-        ois.close();
-        for (Food food:myFoods){
-            myDataBase2.insert(food);
-        }
-        assertEquals(carrot.getName(),myDataBase2.getFoods().get(0).getName());
-        assertEquals(apple.getName(),myDataBase2.getFoods().get(1).getName());
-
+        FoodDataBase testFoodDataBase = new FoodDataBase();
+        testFoodDataBase.load();
+        assertEquals("carrot", myFoodDataBase.getFoods().get(0).getName());
+        assertEquals(carrot.getPrice(), myFoodDataBase.getFoods().get(0).getPrice());
+        assertEquals("apple", myFoodDataBase.getFoods().get(1).getName());
     }
 
-    @Test
-    void testLoad() throws IOException, ClassNotFoundException {
-        myFoodDataBase.insert(apple);
-        myFoodDataBase.load();
-        assertEquals(carrot.getName(),myFoodDataBase.getFoods().get(0).getName());
-        assertEquals(apple.getName(),myFoodDataBase.getFoods().get(1).getName());
 
+    @Test
+    void testInsert() {
+        myFoodDataBase.insert(carrot);
+        assertEquals(myFoodDataBase.getFoods().get(0).getName(), carrot.getName());
     }
 
 

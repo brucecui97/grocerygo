@@ -108,10 +108,23 @@ public class Store {
     // effect: adds some food to the foods list and asks user how they want to sort the list
     public void run() throws IOException, ClassNotFoundException {
         FoodDataBase myFoodDataBase = new FoodDataBase();
+
+
+        Food pineapple = new Food("pineapple",2,3,5);
+        Food pear = new Food("pear",10,5,8);
+        Food apple = new Food("apple",10,5,8);
+        myFoodDataBase.insert(pineapple);
+        myFoodDataBase.insert(pear);
+        myFoodDataBase.insert(apple);
+
+        myFoodDataBase.save();
+
+        FoodDataBase temp = new FoodDataBase();
         System.out.println("initially foods is empty, but we load from dataBase");
-        myFoodDataBase.load();
-        System.out.println(myFoodDataBase.getFoods().get(0).getName());
-        System.out.println(myFoodDataBase.getFoods().get(1).getName());
+        temp.load();
+        System.out.println(temp.getFoods().get(0).getName());
+        System.out.println(temp.getFoods().get(1).getName());
+        System.out.println(temp.getFoods().get(2).getName());
 
 
     }
