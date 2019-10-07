@@ -6,6 +6,7 @@ import java.util.*;
 
 public class Store {
     private List<Food> foods;
+    private List<NonFood> nonFoods;
     private String name;
 
     public Store() {
@@ -16,6 +17,14 @@ public class Store {
     public Store(String storename) {
         foods = new ArrayList<>();
         name = storename;
+    }
+
+    public void setNonFoods(List<NonFood> nonFoods) {
+        this.nonFoods = nonFoods;
+    }
+
+    public List<NonFood> getNonFoods() {
+        return nonFoods;
     }
 
     public void setFoods(List<Food> foods) {
@@ -33,13 +42,13 @@ public class Store {
 
     //Modfiies this
     //Effect: add specified food to the foods available in the store
-    public void insert(Food food) {
+    public void insertFood(Food food) {
         foods.add(food);
     }
 
     //Modfiies this
     //Effect: remove specified food to the foods available in the store
-    public void remove(String foodName) {
+    public void removeFood(String foodName) {
         for (Food food : foods) {
             if (food.getName() == foodName) {
                 foods.remove(food);
@@ -49,7 +58,7 @@ public class Store {
     }
 
     //Effect: determine if foods has food called foodName
-    public boolean contains(String foodName) {
+    public boolean containsFood(String foodName) {
         for (Food food : foods) {
             if (food.getName() == foodName) {
                 return true;
@@ -77,7 +86,7 @@ public class Store {
 
     //modifies this
     //Produce list of food ranked high to low in price and updates order of foods list
-    public List<Food> sortPrice() {
+    public List<Food> sortPriceFood() {
         Comparator<Food> comp = new CompPrice();
         Collections.sort(foods, comp);
         return (foods);
@@ -86,7 +95,7 @@ public class Store {
     //effect: print the info of each food in foods
     public void printListofFood(List<Food> foods) {
         for (int i = 0; i < foods.size(); i++) {
-            foods.get(i).print();
+            foods.get(i).printInfo();
         }
     }
 
