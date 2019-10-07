@@ -110,14 +110,13 @@ public class Store {
             foods.get(i).printInfo();
         }
     }
+
     //effect: print the info of each food in foods
     public void printListofNonFood(List<NonFood> nonFoods) {
         for (int i = 0; i < nonFoods.size(); i++) {
             nonFoods.get(i).printInfo();
         }
     }
-
-
 
 
 }
