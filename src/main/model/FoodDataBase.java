@@ -10,10 +10,10 @@ import java.io.*;
 
 //loading and saving to/from file was done following this post
 //https://stackoverflow.com/questions/16111496/java-how-can-i-write-my-arraylist-to-a-file-and-read-load-that-file-to-the
-public class FoodDataBase implements DataBase {
+public class FoodDataBase extends DataBase {
     private List<Food> foods;
 
-    FoodDataBase() {
+    public FoodDataBase() {
         foods = new ArrayList<>();
 
     }
@@ -23,16 +23,13 @@ public class FoodDataBase implements DataBase {
     }
 
     //effect: return original string as list of space deliminated string
-    private ArrayList<String> splitOnSpace(String line) {
-        String[] splits = line.split(" ");
-        return new ArrayList<>(Arrays.asList(splits));
-    }
+
 
     //saves data in current foods in specified file location
     @Override
-    public void save() throws IOException {
+    public void save(String path) throws IOException {
         List<String> lines = new ArrayList<>();
-        PrintWriter writer = new PrintWriter("./data/inputfile.txt", "UTF-8");
+        PrintWriter writer = new PrintWriter(path, "UTF-8");
         for (Food food : foods) {
             String line = food.getName() + " "
                     + Integer.toString(food.getPrice()) + " "
@@ -45,9 +42,9 @@ public class FoodDataBase implements DataBase {
 
     //loads data from the only read/write file for loading/saving
     @Override
-    public void load() throws IOException, ClassNotFoundException {
+    public void load(String path) throws IOException, ClassNotFoundException {
         foods = new ArrayList<>();
-        List<String> lines = Files.readAllLines(Paths.get("./data/inputfile.txt"));
+        List<String> lines = Files.readAllLines(Paths.get(path));
 
         for (String line : lines) {
             ArrayList<String> partsOfLine = splitOnSpace(line);
