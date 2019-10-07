@@ -1,12 +1,9 @@
 package model;
 
-import java.io.Serializable;
 
-public class Food implements Serializable {
-    private int price;
+public class Food extends Item {
     private int calories;
     private int weight;
-    private String name;
 
     public Food() {
     }
@@ -20,25 +17,12 @@ public class Food implements Serializable {
         this.price = price;
     }
 
-
-    public String getName() {
-        return name;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
     public int getCalories() {
         return calories;
     }
 
     public int getWeight() {
         return weight;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 
     public void setCalories(int calories) {
@@ -49,12 +33,10 @@ public class Food implements Serializable {
         this.weight = weight;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     //effect: print info related to this food item
-    public void print() {
+    @Override
+    public void printInfo() {
         System.out.println("name is " + getName() + " weight is " + getWeight()
                 + " calorie is " + getCalories() + " price is " + getPrice());
 
