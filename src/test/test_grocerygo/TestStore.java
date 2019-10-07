@@ -2,10 +2,12 @@ package test_grocerygo;
 
 
 import model.Food;
+import model.NonFoodDataBase;
 import model.Store;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -130,6 +132,8 @@ public class TestStore {
         for (int i = 0; i<mystore.getFoods().size();i++){
             assertTrue(mystore.getFoods().get(i).equals(temp.get(i)));
         }
+
+
     }
 //    @Test
 //    public void testSortDollarPerCalorieEmpty() {

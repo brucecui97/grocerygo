@@ -16,7 +16,8 @@ public class Main {
         bruceStore.printListofNonFood(bruceStore.getNonFoods());
         Scanner input = new Scanner(System.in);
 
-        System.out.println("Enter a number below: would you like to sort Food Items by Price? (1 means yes, 0 means no)");
+        System.out.println("Enter a number below: would you like to sort Food Items by Price? "
+                + "(1 means yes, 0 means no)");
         int number = input.nextInt();
         System.out.println("you entered " + number);
 
