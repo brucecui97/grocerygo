@@ -28,7 +28,7 @@ public class NonFoodDataBase extends DataBase {
 
     //loads data from the only read/write file for loading/saving
     @Override
-    public void load(String path) throws IOException, ClassNotFoundException {
+    public void load(String path) throws IOException {
         nonFoods = new ArrayList<>();
         List<String> lines = Files.readAllLines(Paths.get(path));
 

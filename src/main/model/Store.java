@@ -19,13 +19,13 @@ public class Store {
         name = storename;
     }
 
-    public void loadFoodDataBase() throws IOException, ClassNotFoundException {
+    public void loadFoodDataBase() throws IOException {
         FoodDataBase temp = new FoodDataBase();
         temp.load("./data/foodData.txt");
         foods = temp.getFoods();
     }
 
-    public void loadNonFoodDataBase() throws IOException, ClassNotFoundException {
+    public void loadNonFoodDataBase() throws IOException {
         NonFoodDataBase temp = new NonFoodDataBase();
         temp.load("./data/nonFoodData.txt");
         nonFoods = temp.getNonFoods();

@@ -8,8 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.io.*;
 
-//loading and saving to/from file was done following this post
-//https://stackoverflow.com/questions/16111496/java-how-can-i-write-my-arraylist-to-a-file-and-read-load-that-file-to-the
 public class FoodDataBase extends DataBase {
     private List<Food> foods;
 
@@ -42,7 +40,7 @@ public class FoodDataBase extends DataBase {
 
     //loads data from the only read/write file for loading/saving
     @Override
-    public void load(String path) throws IOException, ClassNotFoundException {
+    public void load(String path) throws IOException {
         foods = new ArrayList<>();
         List<String> lines = Files.readAllLines(Paths.get(path));
 
