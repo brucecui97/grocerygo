@@ -11,16 +11,23 @@ public class Grocerygo {
     private Store store;
 
     public Grocerygo() throws IOException {
-
-        store = new Store();
-        store.loadFoodDataBase();
-        Food pear = new Food("pear", 1, 200, 300);
-        store.insertFood(pear);
-        store.loadNonFoodDataBase();
-        System.out.println("here's whats in bruce's stores food database");
-        store.printListofFood(store.getFoods());
-        System.out.println("here's whats in bruce's store's non food database");
-        store.printListofNonFood(store.getNonFoods());
+        while (true) {
+            try {
+                store = new Store();
+                store.loadFoodDataBase();
+                Food pear = new Food("pear", 1, 200, 300);
+                store.insertFood(pear);
+                store.loadNonFoodDataBase();
+                System.out.println("here's whats in bruce's stores food database");
+                store.printListofFood(store.getFoods());
+                System.out.println("here's whats in bruce's store's non food database");
+                store.printListofNonFood(store.getNonFoods());
+                break;
+            } catch (IOException e) {
+                System.out.println("make sure your data paths are correct and try again");
+                promptEnterKey();
+            }
+        }
 
     }
 
@@ -44,6 +51,13 @@ public class Grocerygo {
             }
 
         }
+    }
+
+    // got from https://stackoverflow.com/questions/26184409/java-console-prompt-for-enter-input-before-moving-on
+    public void promptEnterKey() {
+        System.out.println("Press \"ENTER\" to continue...");
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
     }
 
     private int getNumber() throws SortingOptionNotAvailableException {
