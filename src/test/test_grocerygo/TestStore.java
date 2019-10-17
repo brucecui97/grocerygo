@@ -10,9 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 // Unit tests for IntegerSet
 public class TestStore {
@@ -117,7 +115,7 @@ public class TestStore {
             mystore.sortFoods("price");
             assertTrue(mystore.getFoods().isEmpty());
         } catch (SortingOptionNotAvailableException e) {
-            assertTrue(false);
+            fail("should not have caught SortingOptionNotAvailableException");
 
         }
     }
@@ -133,7 +131,7 @@ public class TestStore {
         try {
             mystore.sortFoods("price");
         } catch (SortingOptionNotAvailableException e) {
-            assertTrue(false);
+            fail("should not have caught SortingOptionNotAvailableException");
         }
         List<Food> temp = new ArrayList<Food>();
         temp.add(lettuce);
@@ -152,7 +150,7 @@ public class TestStore {
     public void testSortNotImplementedThrowSortingOptionNotAvailableException() {
         try {
             mystore.sortFoods("NotImplmentedSortingOption");
-            assertTrue(false);
+            fail("exception was not thrown but was expected");
         } catch (SortingOptionNotAvailableException e) {
 
         }
