@@ -2,12 +2,11 @@ package test_grocerygo;
 
 
 import model.Food;
-import model.NonFoodDataBase;
+import model.SortingOptionNotAvailableException;
 import model.Store;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -25,17 +24,18 @@ public class TestStore {
     public void runBefore() {
 
         mystore = new Store();
-        carrot = new Food("carrot",2,3,5);
-        apple = new Food("apple",10,5,8);
+        carrot = new Food("carrot", 2, 3, 5);
+        apple = new Food("apple", 10, 5, 8);
     }
 
     //!!! test constructor
     @Test
-    public void testStore(){
+    public void testStore() {
 
         Store tempStore = new Store("bruce store");
-        assertEquals("bruce store",tempStore.getName());
+        assertEquals("bruce store", tempStore.getName());
     }
+
     @Test
     public void testInsertEmpty() {
         assertEquals(0, mystore.total_food());
@@ -110,26 +110,38 @@ public class TestStore {
         mystore.removeFood("carrot");
         assertEquals(1, mystore.total_food());
     }
+
     @Test
     public void testPriceEmpty() {
-        assertTrue(mystore.sortPriceFood().isEmpty());
+        try {
+            mystore.sortFoods("price");
+            assertTrue(mystore.getFoods().isEmpty());
+        } catch (SortingOptionNotAvailableException e) {
+            assertTrue(false);
+
+        }
     }
+
     @Test //!!!
     public void testSortPriceNonEmpty() {
         Food lettuce = new Food("lettuce", 2, 5, 3);
         Food carrot = new Food("carrot", 3, 10, 5);
-        Food apple = new Food("apple", 7, 20,10);
+        Food apple = new Food("apple", 7, 20, 10);
         mystore.insertFood(lettuce);
         mystore.insertFood(apple);
         mystore.insertFood(carrot);
-        mystore.sortPriceFood();
+        try {
+            mystore.sortFoods("price");
+        } catch (SortingOptionNotAvailableException e) {
+            assertTrue(false);
+        }
         List<Food> temp = new ArrayList<Food>();
         temp.add(lettuce);
         temp.add(carrot);
         temp.add(apple);
 
 
-        for (int i = 0; i<mystore.getFoods().size();i++){
+        for (int i = 0; i < mystore.getFoods().size(); i++) {
             assertTrue(mystore.getFoods().get(i).equals(temp.get(i)));
         }
 

@@ -38,7 +38,7 @@ public class Grocerygo {
                 System.out.println("you entered " + number);
 
                 if (number == 1) {
-                    store.sortPriceFood();
+                    store.sortFoods("price");
                     store.printListofFood(store.getFoods());
                 } else if (number == 0) {
                     System.out.println("you didn't want to sort");
@@ -54,7 +54,7 @@ public class Grocerygo {
     }
 
     // got from https://stackoverflow.com/questions/26184409/java-console-prompt-for-enter-input-before-moving-on
-    public void promptEnterKey() {
+    private void promptEnterKey() {
         System.out.println("Press \"ENTER\" to continue...");
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();

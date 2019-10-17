@@ -98,10 +98,12 @@ public class Store {
 
     //modifies this
     //Produce list of food ranked high to low in price and updates order of foods list
-    public List<Food> sortPriceFood() {
-        Comparator<Food> comp = new CompPrice();
-        Collections.sort(foods, comp);
-        return (foods);
+    public List<Food> sortFoods(String sortBy) throws SortingOptionNotAvailableException {
+        if (sortBy == "price") {
+            Comparator<Food> comp = new CompPrice();
+            Collections.sort(foods, comp);
+            return (foods);
+        } else throw new SortingOptionNotAvailableException();
     }
 
     //effect: print the info of each food in foods
