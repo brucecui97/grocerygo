@@ -31,18 +31,14 @@ public class Grocerygo {
 
     }
 
-    public void startInteraction() {
+    public void startInteraction()  {
         while (true) {
             try {
-                int number = getNumber();
-                System.out.println("you entered " + number);
+                String stringEntered = getString();
+                System.out.println("you entered: " + stringEntered);
+                store.sortFoods(stringEntered);
+                store.printListofFood(store.getFoods());
 
-                if (number == 1) {
-                    store.sortFoods("price");
-                    store.printListofFood(store.getFoods());
-                } else if (number == 0) {
-                    System.out.println("you didn't want to sort");
-                }
             } catch (SortingOptionNotAvailableException e) {
                 System.out.println("you entered a sorting option that is unavailable. Please try again");
                 continue;
@@ -60,14 +56,10 @@ public class Grocerygo {
         scanner.nextLine();
     }
 
-    private int getNumber() throws SortingOptionNotAvailableException {
+    private String  getString() throws SortingOptionNotAvailableException {
         Scanner input = new Scanner(System.in);
-        System.out.println("Enter a number below: would you like to sort Food Items by Price? "
-                + "(1 means yes, 0 means no)");
-        int numEntered = input.nextInt();
-        if (numEntered != 0 && numEntered != 1) {
-            throw new SortingOptionNotAvailableException();
-        }
-        return numEntered;
+        System.out.println("Enter how you want to sort foods by");
+        String stringEntered = input.nextLine();
+        return stringEntered;
     }
 }

@@ -147,6 +147,16 @@ public class TestStore {
 
 
     }
+
+    @Test
+    public void testSortNotImplementedThrowSortingOptionNotAvailableException() {
+        try {
+            mystore.sortFoods("NotImplmentedSortingOption");
+            assertTrue(false);
+        } catch (SortingOptionNotAvailableException e) {
+
+        }
+    }
 //    @Test
 //    public void testSortDollarPerCalorieEmpty() {
 //        assertEquals(mystore.sortDollarPerCalorie(), Collections.<Food> emptyList());
