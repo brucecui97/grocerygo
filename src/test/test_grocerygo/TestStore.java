@@ -2,7 +2,7 @@ package test_grocerygo;
 
 
 import model.Food;
-import model.SortingOptionNotAvailableException;
+import exceptions.SortingOptionNotAvailableException;
 import model.Store;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,26 +36,26 @@ public class TestStore {
 
     @Test
     public void testInsertEmpty() {
-        assertEquals(0, mystore.total_food());
+        assertEquals(0, mystore.totalFood());
         Food carrot = new Food();
         mystore.insertFood(carrot);
-        assertEquals(1, mystore.total_food());
+        assertEquals(1, mystore.totalFood());
     }
 
     @Test
     public void testInsertNonEmpty() {
-        assertEquals(0, mystore.total_food());
+        assertEquals(0, mystore.totalFood());
         Food carrot = new Food();
         mystore.insertFood(carrot);
         mystore.insertFood(carrot);
-        assertEquals(2, mystore.total_food());
+        assertEquals(2, mystore.totalFood());
     }
 
     @Test
     public void testRemoveEmpty() {
         Food carrot = new Food();
         mystore.removeFood("carrot");
-        assertEquals(0, mystore.total_food());
+        assertEquals(0, mystore.totalFood());
     }
 
     @Test
@@ -78,7 +78,7 @@ public class TestStore {
         assertTrue(mystore.containsFood("carrot"));
         mystore.removeFood("carrot");
         assertFalse(mystore.containsFood("carrot"));
-        assertEquals(1, mystore.total_food());
+        assertEquals(1, mystore.totalFood());
     }
 
     @Test
@@ -97,16 +97,16 @@ public class TestStore {
 
     @Test
     public void testTotalFoodEmpty() {
-        assertEquals(0, mystore.total_food());
+        assertEquals(0, mystore.totalFood());
     }
 
     @Test
     public void testTotalFoodNonEmpty() {
         mystore.insertFood(carrot);
         mystore.insertFood(apple);
-        assertEquals(2, mystore.total_food());
+        assertEquals(2, mystore.totalFood());
         mystore.removeFood("carrot");
-        assertEquals(1, mystore.total_food());
+        assertEquals(1, mystore.totalFood());
     }
 
     @Test

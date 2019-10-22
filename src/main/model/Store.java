@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.SortingOptionNotAvailableException;
+
 import java.io.IOException;
 import java.util.*;
 
@@ -82,7 +84,7 @@ public class Store {
     }
 
     //effect: get total number of items of food
-    public int total_food() {
+    public int totalFood() {
         return foods.size();
     }
 

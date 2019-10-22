@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public abstract class DataBase {
-    abstract void load(String path) throws IOException, ClassNotFoundException;
+    public abstract void load(String path) throws IOException, ClassNotFoundException;
 
-    abstract void save(String path) throws IOException;
+    public abstract void save(String path) throws IOException;
 
     protected ArrayList<String> splitOnSpace(String line) {
         String[] splits = line.split(" ");

@@ -1,7 +1,7 @@
 package ui;
 
 import model.Food;
-import model.SortingOptionNotAvailableException;
+import exceptions.SortingOptionNotAvailableException;
 import model.Store;
 
 import java.io.IOException;
