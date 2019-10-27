@@ -46,8 +46,9 @@ public class TestStore {
     public void testInsertNonEmpty() {
         assertEquals(0, mystore.totalFood());
         Food carrot = new Food();
+        Food apple = new Food();
         mystore.insertFood(carrot);
-        mystore.insertFood(carrot);
+        mystore.insertFood(apple);
         assertEquals(2, mystore.totalFood());
     }
 
@@ -68,18 +69,7 @@ public class TestStore {
         assertFalse(mystore.containsFood("carrot"));
     }
 
-    @Test
-    public void testRemoveYesDuplicates() {
-        mystore.insertFood(carrot);
-        mystore.insertFood(carrot);
-        mystore.insertFood(apple);
-        assertTrue(mystore.containsFood("carrot"));
-        mystore.removeFood("carrot");
-        assertTrue(mystore.containsFood("carrot"));
-        mystore.removeFood("carrot");
-        assertFalse(mystore.containsFood("carrot"));
-        assertEquals(1, mystore.totalFood());
-    }
+
 
     @Test
     public void testEmptyContains() {

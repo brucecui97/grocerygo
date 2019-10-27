@@ -62,6 +62,17 @@ public class Food extends Item {
         return Objects.hash(super.hashCode(), calories, weight, store);
     }
 
+
+    public void setStore(Store store) {
+        if (this.store != store) {
+            this.store = store;
+            store.insertFood(this);
+        }
+    }
+
+    public Store getStore() {
+        return store;
+    }
     //    @Override
 //    public boolean equals(Object o) {
 //        if (this == o) return true;

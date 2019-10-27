@@ -50,7 +50,14 @@ public class TestFood {
     }
 
 
+    @Test
+    public void testSetStore(){
+        Store testStore = new Store();
+        myfood.setStore(testStore);
+        assertEquals(myfood.getStore(),testStore);
+        assertTrue(testStore.getFoods().contains(myfood));
 
+    }
 
 }
 

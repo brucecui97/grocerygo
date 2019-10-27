@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Store {
     private List<Food> foods = new ArrayList<>();
-    private List<NonFood> nonFoods= new ArrayList<>();
+    private List<NonFood> nonFoods = new ArrayList<>();
     private String name;
 
     public Store() {
@@ -56,7 +56,10 @@ public class Store {
     //Modfiies this
     //Effect: add specified food to the foods available in the store
     public void insertFood(Food food) {
-        foods.add(food);
+        if (!foods.contains(food)) {
+            foods.add(food);
+            food.setStore(this);
+        }
     }
 
     public void insertNonFood(NonFood nonFood) {
