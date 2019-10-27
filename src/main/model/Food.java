@@ -50,18 +50,34 @@ public class Food extends Item {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Food food = (Food) o;
-        return (calories == food.calories
+        return calories == food.calories
                 && weight == food.weight
-                && Objects.equals(store, food.store)
-                && price == food.price
-                && name == food.name);
+                && Objects.equals(store, food.store);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(calories, weight, store, price, name);
+        return Objects.hash(super.hashCode(), calories, weight, store);
     }
+
+    //    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Food food = (Food) o;
+//        return (calories == food.calories
+//                && weight == food.weight
+//                && Objects.equals(store, food.store)
+//                && price == food.price
+//                && name == food.name);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(calories, weight, store, price, name);
+//    }
 
 //    //effect: determines whether two foods are equal
 //    public boolean equals(Food other) {
