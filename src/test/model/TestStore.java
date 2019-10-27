@@ -1,4 +1,4 @@
-package test_grocerygo;
+package model;
 
 
 import model.Food;
