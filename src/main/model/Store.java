@@ -71,7 +71,7 @@ public class Store {
         }
     }
 
-    //Effect: determine if foods has food called foodName
+    //Effect: determine if foods contains food called foodName
     public boolean containsFood(String foodName) {
         for (Food food : foods) {
             if (food.getName() == foodName) {
