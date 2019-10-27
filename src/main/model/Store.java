@@ -7,8 +7,8 @@ import java.util.*;
 
 
 public class Store {
-    private List<Food> foods;
-    private List<NonFood> nonFoods;
+    private List<Food> foods = new ArrayList<>();
+    private List<NonFood> nonFoods= new ArrayList<>();
     private String name;
 
     public Store() {
@@ -17,7 +17,6 @@ public class Store {
 
     //assign name to the store
     public Store(String storename) {
-        foods = new ArrayList<>();
         name = storename;
     }
 
@@ -60,6 +59,13 @@ public class Store {
         foods.add(food);
     }
 
+    public void insertNonFood(NonFood nonFood) {
+        if (!nonFoods.contains(nonFood)) {
+            nonFoods.add(nonFood);
+            nonFood.setStore(this);
+        }
+    }
+
     //Modfiies this
     //Effect: remove specified food to the foods available in the store
     public void removeFood(String foodName) {
@@ -88,15 +94,6 @@ public class Store {
         return foods.size();
     }
 
-//    //modifies this
-//    //Produce list of food ranked high to low in calorie/$ and updates order of foods list
-//    public List<Food> sortDollarPerCalorie() {
-//        List<Food> result = new ArrayList<>();
-//
-//        Food dummy = new Food();
-//        result.add(dummy);
-//        return result;
-//    }
 
     //modifies this
     //Produce list of food ranked high to low in price and updates order of foods list

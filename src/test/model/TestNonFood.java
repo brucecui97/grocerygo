@@ -39,5 +39,13 @@ public class TestNonFood {
         assertFalse(fork.equals(nonFood));
     }
 
+    @Test
+    public void testSetStore(){
+        Store testStore = new Store();
+        nonFood.setStore(testStore);
+        assertEquals(nonFood.getStore(),testStore);
+        assertTrue(testStore.getNonFoods().contains(nonFood));
+
+    }
 
 }
