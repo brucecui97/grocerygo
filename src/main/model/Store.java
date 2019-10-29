@@ -9,6 +9,7 @@ import java.util.*;
 public class Store {
     private List<Food> foods = new ArrayList<>();
     private List<NonFood> nonFoods = new ArrayList<>();
+    private Map<String,Food> foodHashMap = new HashMap<>();
     private String name;
 
     public Store() {
@@ -24,6 +25,7 @@ public class Store {
         FoodDataBase temp = new FoodDataBase();
         temp.load("./data/foodData.txt");
         foods = temp.getFoods();
+
     }
 
     public void loadNonFoodDataBase() throws IOException {
@@ -31,18 +33,12 @@ public class Store {
         temp.load("./data/nonFoodData.txt");
         nonFoods = temp.getNonFoods();
     }
-
-    public void setNonFoods(List<NonFood> nonFoods) {
-        this.nonFoods = nonFoods;
-    }
+    
 
     public List<NonFood> getNonFoods() {
         return nonFoods;
     }
 
-    public void setFoods(List<Food> foods) {
-        this.foods = foods;
-    }
 
 
     public List<Food> getFoods() {
@@ -123,6 +119,7 @@ public class Store {
             nonFoods.get(i).printInfo();
         }
     }
+
 
 
 }

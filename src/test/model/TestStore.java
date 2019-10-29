@@ -69,8 +69,6 @@ public class TestStore {
         assertFalse(mystore.containsFood("carrot"));
     }
 
-
-
     @Test
     public void testEmptyContains() {
         assertFalse(mystore.containsFood("pineapple"));
