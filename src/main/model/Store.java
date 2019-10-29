@@ -10,6 +10,7 @@ public class Store {
     private List<Food> foods = new ArrayList<>();
     private List<NonFood> nonFoods = new ArrayList<>();
     private Map<String, Food> foodHashMap = new HashMap<>();
+    private Map<String, NonFood> nonFoodHashMap = new HashMap<>();
     private String name;
 
     public Store() {
@@ -25,6 +26,10 @@ public class Store {
         return foodHashMap;
     }
 
+    public Map<String, NonFood> getNonFoodHashMap() {
+        return nonFoodHashMap;
+    }
+
     public void loadFoodDataBase() throws IOException {
         FoodDataBase temp = new FoodDataBase();
         temp.load("./data/foodData.txt");
@@ -38,7 +43,9 @@ public class Store {
     public void loadNonFoodDataBase() throws IOException {
         NonFoodDataBase temp = new NonFoodDataBase();
         temp.load("./data/nonFoodData.txt");
-        nonFoods = temp.getNonFoods();
+        for (NonFood nonFood : temp.getNonFoods()) {
+            insertNonFood(nonFood);
+        }
     }
 
 
@@ -68,6 +75,7 @@ public class Store {
     public void insertNonFood(NonFood nonFood) {
         if (!nonFoods.contains(nonFood)) {
             nonFoods.add(nonFood);
+            nonFoodHashMap.put(nonFood.name, nonFood);
             nonFood.setStore(this);
         }
     }
@@ -79,6 +87,18 @@ public class Store {
             if (food.getName() == foodName) {
                 foods.remove(food);
                 foodHashMap.remove(food.name);
+                return;
+            }
+        }
+    }
+
+    //Modfiies this
+    //Effect: remove specified nonFood from the list of nonFoods available in the store
+    public void removeNonFood(String nonFoodName) {
+        for (NonFood nonFood : nonFoods) {
+            if (nonFood.getName() == nonFoodName) {
+                nonFoods.remove(nonFood);
+                nonFoodHashMap.remove(nonFood.name);
                 return;
             }
         }

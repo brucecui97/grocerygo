@@ -17,13 +17,17 @@ public class TestStore {
     Store mystore;
     Food carrot;
     Food apple;
-
+    NonFood fork;
+    NonFood knife;
     @BeforeEach
     public void runBefore() {
 
         mystore = new Store();
         carrot = new Food("carrot", 2, 3, 5);
         apple = new Food("apple", 10, 5, 8);
+        fork = new NonFood("fork",5);
+        knife = new NonFood("knife", 8);
+
     }
 
     //!!! test constructor
@@ -165,5 +169,27 @@ public class TestStore {
 
     }
 
+    @Test
+    public void insertNonFoodEmptyListAndMapContainAdded() {
+        mystore.insertNonFood(fork);
+        assertTrue(mystore.getNonFoods().contains(fork));
+        assertTrue(mystore.getNonFoodHashMap().containsKey(fork.name));
+
+    }
+
+    @Test
+    public void removeNonFoodListAndMapBothRemoved() {
+        mystore.insertNonFood(fork);
+        mystore.insertNonFood(knife);
+        mystore.insertNonFood(knife);
+        mystore.insertNonFood(fork);
+        assertTrue(mystore.getNonFoods().contains(fork));
+        assertTrue(mystore.getNonFoodHashMap().containsKey(fork.name));
+
+        mystore.removeNonFood(knife.name);
+        assertFalse(mystore.getNonFoods().contains(knife));
+        assertFalse(mystore.getFoodHashMap().containsKey(knife.name));
+
+    }
 }
 
