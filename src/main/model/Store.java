@@ -106,14 +106,7 @@ public class Store {
 
     //Effect: determine if foods contains food called foodName
     public boolean containsFood(String foodName) {
-        for (Food food : foods) {
-            if (food.getName() == foodName) {
-                return true;
-            }
-
-        }
-        return false;
-
+        return foodHashMap.containsKey(foodName);
     }
 
     //effect: get total number of items of food
