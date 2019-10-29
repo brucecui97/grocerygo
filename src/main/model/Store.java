@@ -109,6 +109,11 @@ public class Store {
         return foodHashMap.containsKey(foodName);
     }
 
+    //Effect: determine if foods contains food called foodName
+    public boolean containsNonFood(String nonFoodName) {
+        return nonFoodHashMap.containsKey(nonFoodName);
+    }
+
     //effect: get total number of items of food
     public int totalFood() {
         return foods.size();

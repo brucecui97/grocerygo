@@ -173,7 +173,7 @@ public class TestStore {
     public void insertNonFoodEmptyListAndMapContainAdded() {
         mystore.insertNonFood(fork);
         assertTrue(mystore.getNonFoods().contains(fork));
-        assertTrue(mystore.getNonFoodHashMap().containsKey(fork.name));
+        assertTrue(mystore.containsNonFood(fork.getName()));
 
     }
 
@@ -188,8 +188,10 @@ public class TestStore {
 
         mystore.removeNonFood(knife.name);
         assertFalse(mystore.getNonFoods().contains(knife));
-        assertFalse(mystore.getFoodHashMap().containsKey(knife.name));
+        assertFalse(mystore.containsNonFood(knife.getName()));
 
     }
+
+
 }
 
