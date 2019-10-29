@@ -143,16 +143,27 @@ public class TestStore {
 
         }
     }
-//    @Test
-//    public void testSortDollarPerCalorieEmpty() {
-//        assertEquals(mystore.sortDollarPerCalorie(), Collections.<Food> emptyList());
-//
-//    }
-//    @Test
-//    public void testSortDollarPerCalorieNonEmpty() {
-//
-//
-//    }
+
+    @Test
+    public void insertFoodEmptyListAndMapContainAdded() {
+        mystore.insertFood(carrot);
+        assertTrue(mystore.getFoods().contains(carrot));
+        assertTrue(mystore.getFoodHashMap().containsKey(carrot.name));
+
+    }
+
+    @Test
+    public void removeFoodListAndMapBothRemoved() {
+        mystore.insertFood(carrot);
+        mystore.insertFood(apple);
+        assertTrue(mystore.getFoods().contains(carrot));
+        assertTrue(mystore.getFoodHashMap().containsKey(carrot.name));
+
+        mystore.removeFood(carrot.name);
+        assertFalse(mystore.getFoods().contains(carrot));
+        assertFalse(mystore.getFoodHashMap().containsKey(carrot.name));
+
+    }
 
 }
 

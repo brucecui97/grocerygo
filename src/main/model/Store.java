@@ -9,7 +9,7 @@ import java.util.*;
 public class Store {
     private List<Food> foods = new ArrayList<>();
     private List<NonFood> nonFoods = new ArrayList<>();
-    private Map<String,Food> foodHashMap = new HashMap<>();
+    private Map<String, Food> foodHashMap = new HashMap<>();
     private String name;
 
     public Store() {
@@ -21,10 +21,17 @@ public class Store {
         name = storename;
     }
 
+    public Map<String, Food> getFoodHashMap() {
+        return foodHashMap;
+    }
+
     public void loadFoodDataBase() throws IOException {
         FoodDataBase temp = new FoodDataBase();
         temp.load("./data/foodData.txt");
-        foods = temp.getFoods();
+        for (Food food : temp.getFoods()) {
+            insertFood(food);
+        }
+
 
     }
 
@@ -33,12 +40,11 @@ public class Store {
         temp.load("./data/nonFoodData.txt");
         nonFoods = temp.getNonFoods();
     }
-    
+
 
     public List<NonFood> getNonFoods() {
         return nonFoods;
     }
-
 
 
     public List<Food> getFoods() {
@@ -54,6 +60,7 @@ public class Store {
     public void insertFood(Food food) {
         if (!foods.contains(food)) {
             foods.add(food);
+            foodHashMap.put(food.name, food);
             food.setStore(this);
         }
     }
@@ -71,6 +78,7 @@ public class Store {
         for (Food food : foods) {
             if (food.getName() == foodName) {
                 foods.remove(food);
+                foodHashMap.remove(food.name);
                 return;
             }
         }
@@ -119,7 +127,6 @@ public class Store {
             nonFoods.get(i).printInfo();
         }
     }
-
 
 
 }
