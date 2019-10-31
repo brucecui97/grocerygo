@@ -19,13 +19,14 @@ public class TestStore {
     Food apple;
     NonFood fork;
     NonFood knife;
+
     @BeforeEach
     public void runBefore() {
 
         mystore = new Store();
         carrot = new Food("carrot", 2, 3, 5);
         apple = new Food("apple", 10, 5, 8);
-        fork = new NonFood("fork",5);
+        fork = new NonFood("fork", 5);
         knife = new NonFood("knife", 8);
 
     }
@@ -46,15 +47,7 @@ public class TestStore {
         assertEquals(1, mystore.totalFood());
     }
 
-    @Test
-    public void testInsertNonEmpty() {
-        assertEquals(0, mystore.totalFood());
-        Food carrot = new Food();
-        Food apple = new Food();
-        mystore.insertFood(carrot);
-        mystore.insertFood(apple);
-        assertEquals(2, mystore.totalFood());
-    }
+
 
     @Test
     public void testRemoveEmpty() {
@@ -105,7 +98,7 @@ public class TestStore {
     public void testPriceEmpty() {
         try {
             mystore.sortFoods("price");
-            assertTrue(mystore.getFoods().isEmpty());
+            assertEquals(mystore.getFoodHashMap().size(), 0);
         } catch (SortingOptionNotAvailableException e) {
             fail("should not have caught SortingOptionNotAvailableException");
 
@@ -117,11 +110,12 @@ public class TestStore {
         Food lettuce = new Food("lettuce", 2, 5, 3);
         Food carrot = new Food("carrot", 3, 10, 5);
         Food apple = new Food("apple", 7, 20, 10);
+        List<Food> sortedFoods = new ArrayList<>();
         mystore.insertFood(lettuce);
         mystore.insertFood(apple);
         mystore.insertFood(carrot);
         try {
-            mystore.sortFoods("price");
+            sortedFoods = mystore.sortFoods("price");
         } catch (SortingOptionNotAvailableException e) {
             fail("should not have caught SortingOptionNotAvailableException");
         }
@@ -130,9 +124,8 @@ public class TestStore {
         temp.add(carrot);
         temp.add(apple);
 
-
-        for (int i = 0; i < mystore.getFoods().size(); i++) {
-            assertTrue(mystore.getFoods().get(i).equals(temp.get(i)));
+        for (int i = 0; i < sortedFoods.size(); i++) {
+            assertTrue(sortedFoods.get(i).equals(temp.get(i)));
         }
 
 
@@ -151,7 +144,7 @@ public class TestStore {
     @Test
     public void insertFoodEmptyListAndMapContainAdded() {
         mystore.insertFood(carrot);
-        assertTrue(mystore.getFoods().contains(carrot));
+        assertTrue(mystore.getFoodHashMap().containsKey(carrot.name));
         assertTrue(mystore.getFoodHashMap().containsKey(carrot.name));
 
     }
@@ -160,37 +153,17 @@ public class TestStore {
     public void removeFoodListAndMapBothRemoved() {
         mystore.insertFood(carrot);
         mystore.insertFood(apple);
-        assertTrue(mystore.getFoods().contains(carrot));
+        assertTrue(mystore.getFoodHashMap().containsKey(apple.name));
         assertTrue(mystore.getFoodHashMap().containsKey(carrot.name));
 
         mystore.removeFood(carrot.name);
-        assertFalse(mystore.getFoods().contains(carrot));
-        assertFalse(mystore.getFoodHashMap().containsKey(carrot.name));
+        assertFalse(mystore.containsFood(carrot.name));
 
     }
 
-    @Test
-    public void insertNonFoodEmptyListAndMapContainAdded() {
-        mystore.insertNonFood(fork);
-        assertTrue(mystore.getNonFoods().contains(fork));
-        assertTrue(mystore.containsNonFood(fork.getName()));
 
-    }
 
-    @Test
-    public void removeNonFoodListAndMapBothRemoved() {
-        mystore.insertNonFood(fork);
-        mystore.insertNonFood(knife);
-        mystore.insertNonFood(knife);
-        mystore.insertNonFood(fork);
-        assertTrue(mystore.getNonFoods().contains(fork));
-        assertTrue(mystore.getNonFoodHashMap().containsKey(fork.name));
 
-        mystore.removeNonFood(knife.name);
-        assertFalse(mystore.getNonFoods().contains(knife));
-        assertFalse(mystore.containsNonFood(knife.getName()));
-
-    }
 
 
 }

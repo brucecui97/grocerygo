@@ -7,14 +7,13 @@ import java.util.*;
 
 
 public class Store {
-    private List<Food> foods = new ArrayList<>();
-    private List<NonFood> nonFoods = new ArrayList<>();
+    //private List<Food> foods = new ArrayList<>();
+    // private List<NonFood> nonFoods = new ArrayList<>();
     private Map<String, Food> foodHashMap = new HashMap<>();
     private Map<String, NonFood> nonFoodHashMap = new HashMap<>();
     private String name;
 
     public Store() {
-        foods = new ArrayList<>();
     }
 
     //assign name to the store
@@ -48,16 +47,6 @@ public class Store {
         }
     }
 
-
-    public List<NonFood> getNonFoods() {
-        return nonFoods;
-    }
-
-
-    public List<Food> getFoods() {
-        return foods;
-    }
-
     public String getName() {
         return name;
     }
@@ -65,16 +54,14 @@ public class Store {
     //Modfiies this
     //Effect: add specified food to the foods available in the store
     public void insertFood(Food food) {
-        if (!foods.contains(food)) {
-            foods.add(food);
+        if (!foodHashMap.containsKey(food.name)) {
             foodHashMap.put(food.name, food);
             food.setStore(this);
         }
     }
 
     public void insertNonFood(NonFood nonFood) {
-        if (!nonFoods.contains(nonFood)) {
-            nonFoods.add(nonFood);
+        if (!nonFoodHashMap.containsKey(nonFood)) {
             nonFoodHashMap.put(nonFood.name, nonFood);
             nonFood.setStore(this);
         }
@@ -83,25 +70,16 @@ public class Store {
     //Modfiies this
     //Effect: remove specified food to the foods available in the store
     public void removeFood(String foodName) {
-        for (Food food : foods) {
-            if (food.getName() == foodName) {
-                foods.remove(food);
-                foodHashMap.remove(food.name);
-                return;
-            }
-        }
+
+        foodHashMap.remove(foodName);
+
     }
+
 
     //Modfiies this
     //Effect: remove specified nonFood from the list of nonFoods available in the store
     public void removeNonFood(String nonFoodName) {
-        for (NonFood nonFood : nonFoods) {
-            if (nonFood.getName() == nonFoodName) {
-                nonFoods.remove(nonFood);
-                nonFoodHashMap.remove(nonFood.name);
-                return;
-            }
-        }
+        nonFoodHashMap.remove(nonFoodName);
     }
 
     //Effect: determine if foods contains food called foodName
@@ -116,17 +94,21 @@ public class Store {
 
     //effect: get total number of items of food
     public int totalFood() {
-        return foods.size();
+        return foodHashMap.size();
     }
 
 
     //modifies this
     //Produce list of food ranked high to low in price and updates order of foods list
     public List<Food> sortFoods(String sortBy) throws SortingOptionNotAvailableException {
+        List<Food> tempFoods = new ArrayList<>();
+        for (String foodName : foodHashMap.keySet()) {
+            tempFoods.add(foodHashMap.get(foodName));
+        }
         if (sortBy.equals("price")) {
             Comparator<Food> comp = new CompPrice();
-            Collections.sort(foods, comp);
-            return (foods);
+            Collections.sort(tempFoods, comp);
+            return (tempFoods);
         } else {
             throw new SortingOptionNotAvailableException();
         }

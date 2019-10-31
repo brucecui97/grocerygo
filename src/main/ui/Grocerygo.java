@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Grocerygo {
     private Store store;
 
-    public Grocerygo() throws IOException {
+    public Grocerygo() throws SortingOptionNotAvailableException {
         while (true) {
             try {
                 store = new Store();
@@ -18,10 +18,6 @@ public class Grocerygo {
                 Food pear = new Food("pear", 1, 200, 300);
                 store.insertFood(pear);
                 store.loadNonFoodDataBase();
-                System.out.println("here's whats in bruce's stores food database");
-                store.printListofFood(store.getFoods());
-                System.out.println("here's whats in bruce's store's non food database");
-                store.printListofNonFood(store.getNonFoods());
                 break;
             } catch (IOException e) {
                 System.out.println("make sure your data paths are correct and try again");
@@ -36,8 +32,7 @@ public class Grocerygo {
             try {
                 String stringEntered = getString();
                 System.out.println("you entered: " + stringEntered);
-                store.sortFoods(stringEntered);
-                store.printListofFood(store.getFoods());
+                store.printListofFood(store.sortFoods(stringEntered));
 
             } catch (SortingOptionNotAvailableException e) {
                 System.out.println("you entered a sorting option that is unavailable. Please try again");

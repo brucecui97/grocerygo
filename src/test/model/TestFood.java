@@ -55,7 +55,7 @@ public class TestFood {
         Store testStore = new Store();
         myfood.setStore(testStore);
         assertEquals(myfood.getStore(),testStore);
-        assertTrue(testStore.getFoods().contains(myfood));
+        assertTrue(testStore.containsFood(myfood.name));
 
     }
 
