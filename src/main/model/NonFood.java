@@ -3,7 +3,6 @@ package model;
 import java.util.Objects;
 
 public class NonFood extends Item {
-    private Store store;
 
     //modifies this, store
     //effect: sets this nonFood item belongs to store, and add this nonFood item to listof nonFood items in store

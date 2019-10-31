@@ -56,6 +56,7 @@ public class TestFood {
         myfood.setStore(testStore);
         assertEquals(myfood.getStore(),testStore);
         assertTrue(testStore.containsFood(myfood));
+        assertEquals(testStore.getFoodHashMap().size(),1);
     }
 
 }

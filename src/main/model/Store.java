@@ -29,7 +29,7 @@ public class Store {
     }
 
     private Map<Item, NonFood> nonFoodHashMap = new HashMap<>();
-    private String name;
+    private String name = "default name";
 
     public Store() {
     }
@@ -101,6 +101,7 @@ public class Store {
     public void removeFood(Item item) {
 
         foodHashMap.remove(item);
+        item.removeStore();
 
     }
 
@@ -109,6 +110,8 @@ public class Store {
     //Effect: remove specified nonFood from the list of nonFoods available in the store
     public void removeNonFood(Item item) {
         nonFoodHashMap.remove(item);
+        item.removeStore();
+
     }
 
     //Effect: determine if foods contains food called foodName

@@ -94,7 +94,7 @@ public class TestStore {
     }
 
     @Test
-    public void testPriceEmpty() {
+    public void testSortPriceEmpty() {
         try {
             mystore.sortFoods("price");
             assertEquals(mystore.getFoodHashMap().size(), 0);
@@ -144,6 +144,7 @@ public class TestStore {
     public void insertFoodSuccess() {
         mystore.insertFood(carrot);
         assertTrue(mystore.getFoodHashMap().containsKey(carrot));
+        assertEquals(carrot.getStore(),mystore);
 
     }
 
@@ -157,6 +158,7 @@ public class TestStore {
         mystore.removeFood(carrot);
         assertFalse(mystore.containsFood(carrot));
         assertTrue(mystore.containsFood(apple));
+        assertNotEquals(carrot.getStore(),mystore);
 
     }
 
@@ -165,7 +167,7 @@ public class TestStore {
         mystore.insertNonFood(fork);
         assertTrue(mystore.containsNonFood(fork));
         assertEquals(fork.getStore(),mystore);
-
+        assertEquals(mystore.getNonFoodHashMap().size(),1);
     }
 
     @Test
@@ -178,6 +180,7 @@ public class TestStore {
         mystore.removeNonFood(fork);
         assertFalse(mystore.containsNonFood(fork));
         assertTrue(mystore.containsNonFood(knife));
+        assertNotEquals(fork.store,mystore);
 
     }
 

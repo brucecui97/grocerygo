@@ -5,11 +5,14 @@ import java.util.Objects;
 public abstract class Item {
     protected int price;
     protected String name;
+    protected Store store;
 //
 //    public Item(String name, int price) {
 //        this.name = name;
 //        this.price = price;
 //    }
+
+
 
     public int getPrice() {
         return price;
@@ -28,6 +31,10 @@ public abstract class Item {
     }
 
     public abstract void printInfo();
+
+    public void removeStore() {
+        store = null;
+    }
 
     @Override
     public boolean equals(Object o) {

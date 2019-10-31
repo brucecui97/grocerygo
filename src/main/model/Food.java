@@ -6,7 +6,6 @@ import java.util.Objects;
 public class Food extends Item {
     private int calories;
     private int weight;
-    private Store store;
 
     public Food() {
     }
@@ -53,6 +52,8 @@ public class Food extends Item {
             store.insertFood(this);
         }
     }
+
+
 
     public Store getStore() {
         return store;
