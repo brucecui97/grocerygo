@@ -13,7 +13,6 @@ public abstract class Item {
 //    }
 
 
-
     public int getPrice() {
         return price;
     }
@@ -33,7 +32,13 @@ public abstract class Item {
     public abstract void printInfo();
 
     public void removeStore() {
-        store = null;
+        if (store != null) {
+            Store storePointer = store;
+            store = null;
+            storePointer.removeFood(this);
+            storePointer.removeNonFood(this);
+
+        }
     }
 
     @Override

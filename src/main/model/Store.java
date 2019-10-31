@@ -100,8 +100,10 @@ public class Store {
     //Effect: remove specified food to the foods available in the store
     public void removeFood(Item item) {
 
-        foodHashMap.remove(item);
-        item.removeStore();
+        if(containsFood(item)) {
+            foodHashMap.remove(item);
+            item.removeStore();
+        }
 
     }
 

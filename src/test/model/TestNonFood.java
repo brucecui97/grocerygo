@@ -46,6 +46,12 @@ public class TestNonFood {
         assertEquals(nonFood.getStore(),testStore);
         assertTrue(testStore.containsNonFood(nonFood));
         assertEquals(testStore.getNonFoodHashMap().size(),1);
+
+        nonFood.removeStore();
+        assertFalse(testStore.containsNonFood(nonFood));
+        assertEquals(testStore.getNonFoodHashMap().size(),0);
+        assertEquals(nonFood.getStore(),null);
+
     }
 
 }
