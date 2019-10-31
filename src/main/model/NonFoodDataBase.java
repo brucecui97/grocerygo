@@ -49,8 +49,5 @@ public class NonFoodDataBase extends DataBase {
         return nonFoods;
     }
 
-    public void insert(NonFood nonFood) {
-        nonFoods.add(nonFood);
-    }
 
 }

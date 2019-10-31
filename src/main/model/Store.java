@@ -13,8 +13,12 @@ public class Store {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Store store = (Store) o;
         return Objects.equals(name, store.name);
     }
@@ -64,6 +68,7 @@ public class Store {
             insertNonFood(nonFood);
         }
     }
+
     public void saveNonFoodDataBase(String path) throws IOException {
         NonFoodDataBase temp = new NonFoodDataBase();
         temp.setNonFoods(getNonFoods());

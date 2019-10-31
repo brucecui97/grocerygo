@@ -14,7 +14,7 @@ public class Grocerygo {
         while (true) {
             try {
                 store = new Store();
-                store.loadFoodDataBase("./data/foodData/txt");
+                store.loadFoodDataBase("./data/foodData.txt");
                 Food pear = new Food("pear", 1, 200, 300);
                 store.insertFood(pear);
                 store.loadNonFoodDataBase("./data/nonFoodData.txt");

@@ -61,7 +61,4 @@ public class FoodDataBase extends DataBase {
         //writer.close(); //note -- if you miss this, the file will not be written at all.
     }
 
-    public void insert(Food food) {
-        foods.add(food);
-    }
 }
