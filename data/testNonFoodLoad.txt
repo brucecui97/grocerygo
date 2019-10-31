@@ -1,0 +1,2 @@
+mouse 5
+keyboard 7

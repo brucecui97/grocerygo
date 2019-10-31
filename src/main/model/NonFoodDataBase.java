@@ -14,6 +14,10 @@ public class NonFoodDataBase extends DataBase {
         nonFoods = new ArrayList<>();
     }
 
+    public void setNonFoods(List<NonFood> nonFoods) {
+        this.nonFoods = nonFoods;
+    }
+
     @Override
     public void save(String path) throws IOException {
         List<String> lines = new ArrayList<>();

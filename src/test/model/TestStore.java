@@ -1,12 +1,11 @@
 package model;
 
 
-import model.Food;
 import exceptions.SortingOptionNotAvailableException;
-import model.Store;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -142,15 +141,14 @@ public class TestStore {
     }
 
     @Test
-    public void insertFoodEmptyListAndMapContainAdded() {
+    public void insertFoodSuccess() {
         mystore.insertFood(carrot);
-        assertTrue(mystore.getFoodHashMap().containsKey(carrot));
         assertTrue(mystore.getFoodHashMap().containsKey(carrot));
 
     }
 
     @Test
-    public void removeFoodListAndMapBothRemoved() {
+    public void removeFoodSuccesss() {
         mystore.insertFood(carrot);
         mystore.insertFood(apple);
         assertTrue(mystore.getFoodHashMap().containsKey(apple));
@@ -158,11 +156,108 @@ public class TestStore {
 
         mystore.removeFood(carrot);
         assertFalse(mystore.containsFood(carrot));
+        assertTrue(mystore.containsFood(apple));
 
     }
 
+    @Test
+    public void insertNonFoodSuccess() {
+        mystore.insertNonFood(fork);
+        assertTrue(mystore.containsNonFood(fork));
+        assertEquals(fork.getStore(),mystore);
 
+    }
 
+    @Test
+    public void removeNonFoodSuccesss() {
+        mystore.insertNonFood(fork);
+        mystore.insertNonFood(knife);
+        assertTrue(mystore.containsNonFood(fork));
+        assertTrue(mystore.containsNonFood(knife));
+
+        mystore.removeNonFood(fork);
+        assertFalse(mystore.containsNonFood(fork));
+        assertTrue(mystore.containsNonFood(knife));
+
+    }
+
+    @Test
+    public void loadFoodDataBase(){
+        Store tempStore = new Store("bruce store");
+        try {
+            tempStore.loadFoodDataBase("./data/testFoodLoad.txt");
+            Food orange = new Food("orange", 2 ,3 ,5);
+            Food pineapple = new Food("pineapple" ,10, 5, 8);
+            assertTrue(tempStore.containsFood(orange));
+            assertTrue(tempStore.containsFood(pineapple));
+        } catch (IOException e) {
+            fail("shouldn't throw exception");
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
+    public void saveFoodDataBase(){
+        Store tempStore = new Store("bruce store");
+        try {
+            tempStore.loadFoodDataBase("./data/testFoodLoad.txt");
+            Food orange = new Food("orange", 2 ,3 ,5);
+            Food pineapple = new Food("pineapple" ,10, 5, 8);
+            tempStore.insertFood(apple);
+            tempStore.saveFoodDataBase("./data/testFoodSave.txt");
+
+            Store loadStore = new Store("load store");
+            loadStore.loadFoodDataBase("./data/testFoodSave.txt");
+            assertTrue(loadStore.containsFood(orange));
+            assertTrue(loadStore.containsFood(pineapple));
+            assertTrue(loadStore.containsFood(apple));
+
+        } catch (IOException e) {
+            fail("shouldn't throw exception");
+            e.printStackTrace();
+}
+
+    }
+
+    @Test
+    public void loadNonFoodDataBase(){
+        Store tempStore = new Store("bruce store");
+        try {
+            tempStore.loadNonFoodDataBase("./data/testNonFoodLoad.txt");
+            NonFood mouse = new NonFood("mouse",5);
+            NonFood keyboard = new NonFood("keyboard",7);
+            assertTrue(tempStore.containsNonFood(mouse));
+            assertTrue(tempStore.containsNonFood(keyboard));
+        } catch (IOException e) {
+            fail("shouldn't throw exception");
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
+    public void saveNonFoodDataBase(){
+        Store tempStore = new Store("bruce store");
+        try {
+            tempStore.loadNonFoodDataBase("./data/testNonFoodLoad.txt");
+            NonFood mouse = new NonFood("mouse",5);
+            NonFood keyboard = new NonFood("keyboard",7);
+            tempStore.insertNonFood(fork);
+            tempStore.saveNonFoodDataBase("./data/testNonFoodSave.txt");
+
+            Store loadStore = new Store("load store");
+            loadStore.loadNonFoodDataBase("./data/testNonFoodSave.txt");
+            assertTrue(loadStore.containsNonFood(mouse));
+            assertTrue(loadStore.containsNonFood(keyboard));
+            assertTrue(loadStore.containsNonFood(fork));
+
+        } catch (IOException e) {
+            fail("shouldn't throw exception");
+            e.printStackTrace();
+        }
+
+    }
 
 
 

@@ -43,23 +43,33 @@ public class Store {
         return nonFoodHashMap;
     }
 
-    public void loadFoodDataBase() throws IOException {
+    public void loadFoodDataBase(String path) throws IOException {
         FoodDataBase temp = new FoodDataBase();
-        temp.load("./data/foodData.txt");
+        temp.load(path);
         for (Food food : temp.getFoods()) {
             insertFood(food);
         }
-
-
     }
 
-    public void loadNonFoodDataBase() throws IOException {
+    public void saveFoodDataBase(String path) throws IOException {
+        FoodDataBase temp = new FoodDataBase();
+        temp.setFoods(getFoods());
+        temp.save(path);
+    }
+
+    public void loadNonFoodDataBase(String path) throws IOException {
         NonFoodDataBase temp = new NonFoodDataBase();
-        temp.load("./data/nonFoodData.txt");
+        temp.load(path);
         for (NonFood nonFood : temp.getNonFoods()) {
             insertNonFood(nonFood);
         }
     }
+    public void saveNonFoodDataBase(String path) throws IOException {
+        NonFoodDataBase temp = new NonFoodDataBase();
+        temp.setNonFoods(getNonFoods());
+        temp.save(path);
+    }
+
 
     public String getName() {
         return name;
@@ -92,8 +102,8 @@ public class Store {
 
     //Modfiies this
     //Effect: remove specified nonFood from the list of nonFoods available in the store
-    public void removeNonFood(String nonFoodName) {
-        nonFoodHashMap.remove(nonFoodName);
+    public void removeNonFood(Item item) {
+        nonFoodHashMap.remove(item);
     }
 
     //Effect: determine if foods contains food called foodName
@@ -102,8 +112,8 @@ public class Store {
     }
 
     //Effect: determine if foods contains food called foodName
-    public boolean containsNonFood(String nonFoodName) {
-        return nonFoodHashMap.containsKey(nonFoodName);
+    public boolean containsNonFood(Item item) {
+        return nonFoodHashMap.containsKey(item);
     }
 
     //effect: get total number of items of food
@@ -115,10 +125,7 @@ public class Store {
     //modifies this
     //Produce list of food ranked high to low in price and updates order of foods list
     public List<Food> sortFoods(String sortBy) throws SortingOptionNotAvailableException {
-        List<Food> tempFoods = new ArrayList<>();
-        for (Item item : foodHashMap.keySet()) {
-            tempFoods.add(foodHashMap.get(item));
-        }
+        List<Food> tempFoods = getFoods();
         if (sortBy.equals("price")) {
             Comparator<Food> comp = new CompPrice();
             Collections.sort(tempFoods, comp);
@@ -126,6 +133,23 @@ public class Store {
         } else {
             throw new SortingOptionNotAvailableException();
         }
+    }
+
+    private List<Food> getFoods() {
+        List<Food> tempFoods = new ArrayList<>();
+        for (Item item : foodHashMap.keySet()) {
+            tempFoods.add(foodHashMap.get(item));
+        }
+        return tempFoods;
+    }
+
+
+    private List<NonFood> getNonFoods() {
+        List<NonFood> tempNonFoods = new ArrayList<>();
+        for (Item item : nonFoodHashMap.keySet()) {
+            tempNonFoods.add(nonFoodHashMap.get(item));
+        }
+        return tempNonFoods;
     }
 
     //effect: print the info of each food in foods

@@ -16,6 +16,10 @@ public class FoodDataBase extends DataBase {
 
     }
 
+    public void setFoods(List<Food> foods) {
+        this.foods = foods;
+    }
+
     public List<Food> getFoods() {
         return foods;
     }

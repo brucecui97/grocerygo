@@ -14,10 +14,10 @@ public class Grocerygo {
         while (true) {
             try {
                 store = new Store();
-                store.loadFoodDataBase();
+                store.loadFoodDataBase("./data/foodData/txt");
                 Food pear = new Food("pear", 1, 200, 300);
                 store.insertFood(pear);
-                store.loadNonFoodDataBase();
+                store.loadNonFoodDataBase("./data/nonFoodData.txt");
                 break;
             } catch (IOException e) {
                 System.out.println("make sure your data paths are correct and try again");

@@ -1,0 +1,3 @@
+orange 2 3 5
+apple 10 5 8
+pineapple 10 5 8

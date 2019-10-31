@@ -1,0 +1,3 @@
+mouse 5
+keyboard 7
+fork 5
