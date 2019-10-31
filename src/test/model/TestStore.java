@@ -48,11 +48,10 @@ public class TestStore {
     }
 
 
-
     @Test
     public void testRemoveEmpty() {
         Food carrot = new Food();
-        mystore.removeFood("carrot");
+        mystore.removeFood(carrot);
         assertEquals(0, mystore.totalFood());
     }
 
@@ -61,23 +60,24 @@ public class TestStore {
 
         mystore.insertFood(apple);
         mystore.insertFood(carrot);
-        assertTrue(mystore.containsFood("carrot"));
-        mystore.removeFood("carrot");
-        assertFalse(mystore.containsFood("carrot"));
+        assertTrue(mystore.containsFood(carrot));
+        mystore.removeFood(carrot);
+        assertFalse(mystore.containsFood(carrot));
     }
 
     @Test
     public void testEmptyContains() {
-        assertFalse(mystore.containsFood("pineapple"));
+        Item pineapple = new Food("pineapple",5,2,3);
+        assertFalse(mystore.containsFood(pineapple));
     }
 
     @Test
     public void testNonEmptyContains() {
         mystore.insertFood(carrot);
         mystore.insertFood(apple);
-        assertTrue(mystore.containsFood("carrot"));
-        assertTrue(mystore.containsFood("apple"));
-        assertFalse(mystore.containsFood("pear"));
+        assertTrue(mystore.containsFood(carrot));
+        assertTrue(mystore.containsFood(apple));
+
     }
 
     @Test
@@ -90,7 +90,7 @@ public class TestStore {
         mystore.insertFood(carrot);
         mystore.insertFood(apple);
         assertEquals(2, mystore.totalFood());
-        mystore.removeFood("carrot");
+        mystore.removeFood(carrot);
         assertEquals(1, mystore.totalFood());
     }
 
@@ -144,8 +144,8 @@ public class TestStore {
     @Test
     public void insertFoodEmptyListAndMapContainAdded() {
         mystore.insertFood(carrot);
-        assertTrue(mystore.getFoodHashMap().containsKey(carrot.name));
-        assertTrue(mystore.getFoodHashMap().containsKey(carrot.name));
+        assertTrue(mystore.getFoodHashMap().containsKey(carrot));
+        assertTrue(mystore.getFoodHashMap().containsKey(carrot));
 
     }
 
@@ -153,11 +153,11 @@ public class TestStore {
     public void removeFoodListAndMapBothRemoved() {
         mystore.insertFood(carrot);
         mystore.insertFood(apple);
-        assertTrue(mystore.getFoodHashMap().containsKey(apple.name));
-        assertTrue(mystore.getFoodHashMap().containsKey(carrot.name));
+        assertTrue(mystore.getFoodHashMap().containsKey(apple));
+        assertTrue(mystore.getFoodHashMap().containsKey(carrot));
 
-        mystore.removeFood(carrot.name);
-        assertFalse(mystore.containsFood(carrot.name));
+        mystore.removeFood(carrot);
+        assertFalse(mystore.containsFood(carrot));
 
     }
 

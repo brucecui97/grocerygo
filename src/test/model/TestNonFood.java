@@ -44,7 +44,7 @@ public class TestNonFood {
         Store testStore = new Store();
         nonFood.setStore(testStore);
         assertEquals(nonFood.getStore(),testStore);
-        assertTrue(testStore.getNonFoodHashMap().containsKey(nonFood.name));
+        assertTrue(testStore.getNonFoodHashMap().containsKey(nonFood));
 
     }
 

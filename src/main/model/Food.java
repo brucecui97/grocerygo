@@ -46,31 +46,6 @@ public class Food extends Item {
 
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        if (!super.equals(o)) {
-            return false;
-        }
-
-        Food food = (Food) o;
-        return calories == food.calories
-                && weight == food.weight
-                && Objects.equals(store, food.store);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), calories, weight, store);
-    }
-
 
     public void setStore(Store store) {
         if (this.store != store) {
