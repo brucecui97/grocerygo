@@ -10,6 +10,8 @@ public class Store {
     //private List<Food> foods = new ArrayList<>();
     // private List<NonFood> nonFoods = new ArrayList<>();
     private Map<Item, Food> foodHashMap = new HashMap<>();
+    private Map<Item, NonFood> nonFoodHashMap = new HashMap<>();
+    private String name = "default name";
 
     @Override
     public boolean equals(Object o) {
@@ -28,8 +30,6 @@ public class Store {
         return Objects.hash(name);
     }
 
-    private Map<Item, NonFood> nonFoodHashMap = new HashMap<>();
-    private String name = "default name";
 
     public Store() {
     }
