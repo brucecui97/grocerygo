@@ -109,7 +109,7 @@ public class TestStore {
         Food lettuce = new Food("lettuce", 2, 5, 3);
         Food carrot = new Food("carrot", 3, 10, 5);
         Food apple = new Food("apple", 7, 20, 10);
-        List<Food> sortedFoods = new ArrayList<>();
+        List<? extends Item> sortedFoods = new ArrayList<>();
         mystore.insertFood(lettuce);
         mystore.insertFood(apple);
         mystore.insertFood(carrot);
@@ -118,7 +118,7 @@ public class TestStore {
         } catch (SortingOptionNotAvailableException e) {
             fail("should not have caught SortingOptionNotAvailableException");
         }
-        List<Food> temp = new ArrayList<Food>();
+        List<Item> temp = new ArrayList<>();
         temp.add(lettuce);
         temp.add(carrot);
         temp.add(apple);

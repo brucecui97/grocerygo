@@ -32,7 +32,7 @@ public class Grocerygo {
             try {
                 String stringEntered = getString();
                 System.out.println("you entered: " + stringEntered);
-                store.printListofFood(store.sortFoods(stringEntered));
+                store.printListofItem(store.sortFoods(stringEntered));
 
             } catch (SortingOptionNotAvailableException e) {
                 System.out.println("you entered a sorting option that is unavailable. Please try again");

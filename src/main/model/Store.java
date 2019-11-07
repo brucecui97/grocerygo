@@ -12,6 +12,7 @@ public class Store {
     private Map<Item, Food> foodHashMap = new HashMap<>();
     private Map<Item, NonFood> nonFoodHashMap = new HashMap<>();
     private String name = "default name";
+    private ItemSorter itemSorter = new ItemSorter();
 
     @Override
     public boolean equals(Object o) {
@@ -133,19 +134,12 @@ public class Store {
 
 
     //modifies this
-    //Produce list of food ranked high to low in price and updates order of foods list
-    public List<Food> sortFoods(String sortBy) throws SortingOptionNotAvailableException {
-        List<Food> tempFoods = getFoods();
-        if (sortBy.equals("price")) {
-            Comparator<Food> comp = new CompPrice();
-            Collections.sort(tempFoods, comp);
-            return (tempFoods);
-        } else {
-            throw new SortingOptionNotAvailableException();
-        }
+    //Produce list of food items ranked high to low in price and updates order of foods list
+    public List<? extends Item> sortFoods(String sortBy) throws SortingOptionNotAvailableException {
+        return itemSorter.sortItems(sortBy,getFoods());
     }
 
-    private List<Food> getFoods() {
+    public List<Food> getFoods() {
         List<Food> tempFoods = new ArrayList<>();
         for (Item item : foodHashMap.keySet()) {
             tempFoods.add(foodHashMap.get(item));
@@ -154,7 +148,7 @@ public class Store {
     }
 
 
-    private List<NonFood> getNonFoods() {
+    public List<NonFood> getNonFoods() {
         List<NonFood> tempNonFoods = new ArrayList<>();
         for (Item item : nonFoodHashMap.keySet()) {
             tempNonFoods.add(nonFoodHashMap.get(item));
@@ -163,14 +157,14 @@ public class Store {
     }
 
     //effect: print the info of each food in foods
-    public void printListofFood(List<Food> foods) {
-        for (int i = 0; i < foods.size(); i++) {
-            foods.get(i).printInfo();
+    public void printListofItem(List<? extends Item> items) {
+        for (int i = 0; i < items.size(); i++) {
+            items.get(i).printInfo();
         }
     }
 
     //effect: print the info of each food in foods
-    public void printListofNonFood(List<NonFood> nonFoods) {
+    public void printListofNonFood(List<? extends Item> nonFoods) {
         for (int i = 0; i < nonFoods.size(); i++) {
             nonFoods.get(i).printInfo();
         }

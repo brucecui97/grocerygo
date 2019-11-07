@@ -11,6 +11,8 @@ public class NonFood extends Item {
             this.store = store;
             store.insertNonFood(this);
         }
+
+
     }
 
     public Store getStore() {
