@@ -105,7 +105,7 @@ public class TestStore {
     }
 
     @Test //!!!
-    public void testSortPriceNonEmpty() {
+    public void testSortFoodPriceNonEmpty() {
         Food lettuce = new Food("lettuce", 2, 5, 3);
         Food carrot = new Food("carrot", 3, 10, 5);
         Food apple = new Food("apple", 7, 20, 10);
@@ -129,6 +129,34 @@ public class TestStore {
 
 
     }
+
+    @Test //!!!
+    public void testSortNonFoodPriceNonEmpty() {
+        NonFood knife = new NonFood("knife", 2);
+        NonFood fork = new NonFood("fork", 3);
+        NonFood pencil = new NonFood("pencil", 7);
+
+        List<? extends Item> sortedNonFoods = new ArrayList<>();
+        mystore.insertNonFood(knife);
+        mystore.insertNonFood(pencil);
+        mystore.insertNonFood(fork);
+        try {
+            sortedNonFoods = mystore.sortNonFoods("price");
+        } catch (SortingOptionNotAvailableException e) {
+            fail("should not have caught SortingOptionNotAvailableException");
+        }
+        List<Item> temp = new ArrayList<>();
+        temp.add(knife);
+        temp.add(fork);
+        temp.add(pencil);
+
+        for (int i = 0; i < sortedNonFoods.size(); i++) {
+            assertTrue(sortedNonFoods.get(i).equals(temp.get(i)));
+        }
+
+
+    }
+
 
     @Test
     public void testSortNotImplementedThrowSortingOptionNotAvailableException() {

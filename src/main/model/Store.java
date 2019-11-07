@@ -132,12 +132,17 @@ public class Store {
         return foodHashMap.size();
     }
 
-
-    //modifies this
-    //Produce list of food items ranked high to low in price and updates order of foods list
+    //Return list of food items ranked high to low in price and updates order of foods list
     public List<? extends Item> sortFoods(String sortBy) throws SortingOptionNotAvailableException {
         return itemSorter.sortItems(sortBy,getFoods());
     }
+
+    //Return list of food items ranked high to low in price and updates order of foods list
+    public List<? extends Item> sortNonFoods(String sortBy) throws SortingOptionNotAvailableException {
+        return itemSorter.sortItems(sortBy,getNonFoods());
+    }
+
+
 
     public List<Food> getFoods() {
         List<Food> tempFoods = new ArrayList<>();
@@ -160,13 +165,6 @@ public class Store {
     public void printListofItem(List<? extends Item> items) {
         for (int i = 0; i < items.size(); i++) {
             items.get(i).printInfo();
-        }
-    }
-
-    //effect: print the info of each food in foods
-    public void printListofNonFood(List<? extends Item> nonFoods) {
-        for (int i = 0; i < nonFoods.size(); i++) {
-            nonFoods.get(i).printInfo();
         }
     }
 
