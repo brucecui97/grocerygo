@@ -31,7 +31,7 @@ public class NonFood extends Item {
 
     @Override
     public void printInfo() {
-        System.out.println("name is " + getName() + " price is " + getPrice());
+        super.printInfo();
     }
 
 

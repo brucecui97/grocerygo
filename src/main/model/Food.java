@@ -40,9 +40,8 @@ public class Food extends Item {
     //effect: print info related to this food item
     @Override
     public void printInfo() {
-        System.out.println("name is " + getName() + " weight is " + getWeight()
-                + " calorie is " + getCalories() + " price is " + getPrice());
-
+        super.printInfo();
+        System.out.println("additonal information: weight is " + getWeight() + " calorie is " + getCalories());
     }
 
 
@@ -52,7 +51,6 @@ public class Food extends Item {
             store.insertFood(this);
         }
     }
-
 
 
     public Store getStore() {
