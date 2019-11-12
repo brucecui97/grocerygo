@@ -6,13 +6,14 @@ import java.io.IOException;
 import java.util.*;
 
 
-public class Store {
+public class Store extends Subject {
     //private List<Food> foods = new ArrayList<>();
     // private List<NonFood> nonFoods = new ArrayList<>();
     private Map<Item, Food> foodHashMap = new HashMap<>();
     private Map<Item, NonFood> nonFoodHashMap = new HashMap<>();
     private String name = "default name";
     private ItemSorter itemSorter = new ItemSorter();
+
 
     @Override
     public boolean equals(Object o) {
@@ -32,13 +33,18 @@ public class Store {
     }
 
 
-    public Store() {
-    }
 
     //assign name to the store
     public Store(String storename) {
         name = storename;
+        Customer joe = new Customer("joe");
+        Customer bob = new Customer("bob");
+        Customer ken = new Customer("ken");
+        attachObserver(joe);
+        attachObserver(bob);
+        attachObserver(ken);
     }
+
 
     public Map<Item, Food> getFoodHashMap() {
         return foodHashMap;
@@ -87,6 +93,7 @@ public class Store {
         if (!foodHashMap.containsKey(food.name)) {
             foodHashMap.put(food, food);
             food.setStore(this);
+            notifyObservers(food);
         }
     }
 
@@ -94,6 +101,7 @@ public class Store {
         if (!nonFoodHashMap.containsKey(nonFood)) {
             nonFoodHashMap.put(nonFood, nonFood);
             nonFood.setStore(this);
+            notifyObservers(nonFood);
         }
     }
 
@@ -134,14 +142,13 @@ public class Store {
 
     //Return list of food items ranked high to low in price and updates order of foods list
     public List<? extends Item> sortFoods(String sortBy) throws SortingOptionNotAvailableException {
-        return itemSorter.sortItems(sortBy,getFoods());
+        return itemSorter.sortItems(sortBy, getFoods());
     }
 
     //Return list of food items ranked high to low in price and updates order of foods list
     public List<? extends Item> sortNonFoods(String sortBy) throws SortingOptionNotAvailableException {
-        return itemSorter.sortItems(sortBy,getNonFoods());
+        return itemSorter.sortItems(sortBy, getNonFoods());
     }
-
 
 
     public List<Food> getFoods() {

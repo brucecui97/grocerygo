@@ -13,7 +13,7 @@ public class Grocerygo {
     public Grocerygo() throws SortingOptionNotAvailableException {
         while (true) {
             try {
-                store = new Store();
+                store = new Store("bruce's store");
                 store.loadFoodDataBase("./data/foodData.txt");
                 Food pear = new Food("pear", 1, 200, 300);
                 store.insertFood(pear);

@@ -52,7 +52,7 @@ public class TestFood {
 
     @Test
     public void testSetandRemoveStore(){
-        Store testStore = new Store();
+        Store testStore = new Store("bruce's store");
         myfood.setStore(testStore);
         assertEquals(myfood.getStore(),testStore);
         assertTrue(testStore.containsFood(myfood));

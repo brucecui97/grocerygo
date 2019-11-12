@@ -22,7 +22,7 @@ public class TestStore {
     @BeforeEach
     public void runBefore() {
 
-        mystore = new Store();
+        mystore = new Store("bruce's store");
         carrot = new Food("carrot", 2, 3, 5);
         apple = new Food("apple", 10, 5, 8);
         fork = new NonFood("fork", 5);

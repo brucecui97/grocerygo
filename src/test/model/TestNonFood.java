@@ -41,7 +41,7 @@ public class TestNonFood {
 
     @Test
     public void testSetStore(){
-        Store testStore = new Store();
+        Store testStore = new Store("bruce's store");
         nonFood.setStore(testStore);
         assertEquals(nonFood.getStore(),testStore);
         assertTrue(testStore.containsNonFood(nonFood));
