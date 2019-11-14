@@ -1,5 +1,5 @@
 package network;
-
+// got code from https://www.mkyong.com/java/how-to-read-and-parse-csv-file-in-java/
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
@@ -69,6 +69,14 @@ public class CSVUtils {
 
         char[] chars = cvsLine.toCharArray();
 
+        curVal = getStringBuffer(separators, customQuote, result, curVal, inQuotes, startCollectChar, doubleQuotesInColumn, chars);
+
+        result.add(curVal.toString());
+
+        return result;
+    }
+
+    private static StringBuffer getStringBuffer(char separators, char customQuote, List<String> result, StringBuffer curVal, boolean inQuotes, boolean startCollectChar, boolean doubleQuotesInColumn, char[] chars) {
         for (char ch : chars) {
 
             if (inQuotes) {
@@ -77,32 +85,13 @@ public class CSVUtils {
                     inQuotes = false;
                     doubleQuotesInColumn = false;
                 } else {
-
-                    //Fixed : allow "" in custom quote enclosed
-                    if (ch == '\"') {
-                        if (!doubleQuotesInColumn) {
-                            curVal.append(ch);
-                            doubleQuotesInColumn = true;
-                        }
-                    } else {
-                        curVal.append(ch);
-                    }
+                    doubleQuotesInColumn = isDoubleQuotesInColumn(curVal, doubleQuotesInColumn, ch);
 
                 }
             } else {
                 if (ch == customQuote) {
 
-                    inQuotes = true;
-
-                    //Fixed : allow "" in empty quote enclosed
-                    if (chars[0] != '"' && customQuote == '\"') {
-                        curVal.append('"');
-                    }
-
-                    //double quotes in column will hit this!
-                    if (startCollectChar) {
-                        curVal.append('"');
-                    }
+                    inQuotes = isInQuotes(chars[0] != '"' && customQuote == '\"', curVal, startCollectChar);
 
                 } else if (ch == separators) {
 
@@ -123,10 +112,36 @@ public class CSVUtils {
             }
 
         }
+        return curVal;
+    }
 
-        result.add(curVal.toString());
+    private static boolean isDoubleQuotesInColumn(StringBuffer curVal, boolean doubleQuotesInColumn, char ch) {
+        //Fixed : allow "" in custom quote enclosed
+        if (ch == '\"') {
+            if (!doubleQuotesInColumn) {
+                curVal.append(ch);
+                doubleQuotesInColumn = true;
+            }
+        } else {
+            curVal.append(ch);
+        }
+        return doubleQuotesInColumn;
+    }
 
-        return result;
+    private static boolean isInQuotes(boolean b, StringBuffer curVal, boolean startCollectChar) {
+        boolean inQuotes;
+        inQuotes = true;
+
+        //Fixed : allow "" in empty quote enclosed
+        if (b) {
+            curVal.append('"');
+        }
+
+        //double quotes in column will hit this!
+        if (startCollectChar) {
+            curVal.append('"');
+        }
+        return inQuotes;
     }
 
 }
