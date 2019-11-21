@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Objects;
-
 public class NonFood extends Item {
 
     //modifies this, store
@@ -30,8 +28,8 @@ public class NonFood extends Item {
     }
 
     @Override
-    public void printInfo() {
-        super.printInfo();
+    public String printInfo() {
+        return super.printInfo();
     }
 
 

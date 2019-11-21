@@ -1,8 +1,6 @@
 package model;
 
 
-import java.util.Objects;
-
 public class Food extends Item {
     private int calories;
     private int weight;
@@ -39,9 +37,9 @@ public class Food extends Item {
 
     //effect: print info related to this food item
     @Override
-    public void printInfo() {
-        super.printInfo();
-        System.out.println("additonal information: weight is " + getWeight() + " calorie is " + getCalories());
+    public String printInfo() {
+        return super.printInfo()
+                + "additonal information: weight is " + getWeight() + " calorie is " + getCalories() + "\n";
     }
 
 

@@ -4,6 +4,8 @@ import model.Food;
 import exceptions.SortingOptionNotAvailableException;
 import model.Store;
 
+import javax.swing.JOptionPane;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -27,11 +29,15 @@ public class Grocerygo {
 
     }
 
-    public void startInteraction()  {
+    public void startInteraction() {
         while (true) {
             try {
-                String stringEntered = getString();
+                String stringEntered = JOptionPane.showInputDialog("Enter how you want to sort numbers by");
                 System.out.println("you entered: " + stringEntered);
+                JOptionPane.showMessageDialog(null,
+                        store.printListofItem(store.sortFoods(stringEntered)) + "\n"
+                                + store.printListofItem(store.sortNonFoods(stringEntered)),
+                        "Result Sorted By " + stringEntered, JOptionPane.PLAIN_MESSAGE);
                 store.printListofItem(store.sortFoods(stringEntered));
                 store.printListofItem(store.sortNonFoods(stringEntered));
 
@@ -52,7 +58,7 @@ public class Grocerygo {
         scanner.nextLine();
     }
 
-    private String  getString() throws SortingOptionNotAvailableException {
+    private String getString() throws SortingOptionNotAvailableException {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter how you want to sort foods by");
         String stringEntered = input.nextLine();

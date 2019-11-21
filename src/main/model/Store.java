@@ -33,7 +33,6 @@ public class Store extends Subject {
     }
 
 
-
     //assign name to the store
     public Store(String storename) {
         name = storename;
@@ -169,10 +168,12 @@ public class Store extends Subject {
     }
 
     //effect: print the info of each food in foods
-    public void printListofItem(List<? extends Item> items) {
+    public String printListofItem(List<? extends Item> items) {
+        String res = "";
         for (int i = 0; i < items.size(); i++) {
-            items.get(i).printInfo();
+            res = res + items.get(i).printInfo();
         }
+        return res;
     }
 
 

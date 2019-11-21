@@ -29,8 +29,8 @@ public abstract class Item {
         this.name = name;
     }
 
-    public void printInfo() {
-        System.out.println("* name is " + getName() + " price is " + getPrice());
+    public String printInfo() {
+        return ("* name is " + getName() + " price is " + getPrice() + "\n");
     }
 
     public void removeStore() {
